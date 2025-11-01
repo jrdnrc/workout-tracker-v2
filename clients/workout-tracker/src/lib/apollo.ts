@@ -1,0 +1,30 @@
+import { ApolloClient, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
+import { BatchHttpLink } from '@apollo/client/link/batch-http';
+
+const batchHttpLink = new BatchHttpLink({
+  uri: import.meta.env.VITE_GRAPHQL_URL || 'http://localhost:5010/graphql',
+  batchMax: 10, // Maximum number of operations to batch together
+  batchInterval: 20, // Wait up to 20ms to batch operations
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('auth_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+export const apolloClient = new ApolloClient({
+  link: authLink.concat(batchHttpLink),
+  cache: new InMemoryCache(),
+  defaultOptions: {
+    watchQuery: {
+      fetchPolicy: 'cache-and-network',
+    },
+  },
+});
+

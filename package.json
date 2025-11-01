@@ -1,0 +1,21 @@
+{
+  "name": "wotrack2",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "clients/*",
+    "graphql"
+  ],
+  "scripts": {
+    "dev:graphql": "cd graphql && npm run dev",
+    "dev:client": "cd clients/workout-tracker && npm run dev",
+    "build:client": "cd clients/workout-tracker && npm run build",
+    "db:up": "docker-compose up -d",
+    "db:down": "docker-compose down",
+    "db:migrate": "cd graphql && npm run migrate",
+    "db:seed": "cd graphql && npm run seed",
+    "db:seed:templates": "cd graphql && npm run seed:templates"
+  },
+  "devDependencies": {}
+}
+

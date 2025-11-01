@@ -1,0 +1,4229 @@
+"""The root query type which gives access points into the data universe."""
+type Query implements Node {
+  """
+  Exposes the root query type nested one level down. This is helpful for Relay 1
+  which can only query top level fields if they are in a particular form.
+  """
+  query: Query!
+
+  """
+  The root query type must be a `Node` to work well with Relay 1 mutations. This just resolves to `query`.
+  """
+  nodeId: ID!
+
+  """Fetches an object given its globally unique `ID`."""
+  node(
+    """The globally unique `ID`."""
+    nodeId: ID!
+  ): Node
+
+  """Reads and enables pagination through a set of `Exercise`."""
+  allExercises(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Exercise`."""
+    orderBy: [ExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ExerciseCondition
+  ): ExercisesConnection
+
+  """Reads and enables pagination through a set of `Migration`."""
+  allMigrations(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Migration`."""
+    orderBy: [MigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: MigrationCondition
+  ): MigrationsConnection
+
+  """Reads and enables pagination through a set of `ScheduledWorkout`."""
+  allScheduledWorkouts(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `ScheduledWorkout`."""
+    orderBy: [ScheduledWorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ScheduledWorkoutCondition
+  ): ScheduledWorkoutsConnection
+
+  """Reads and enables pagination through a set of `Set`."""
+  allSets(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Set`."""
+    orderBy: [SetsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SetCondition
+  ): SetsConnection
+
+  """Reads and enables pagination through a set of `TemplateExercise`."""
+  allTemplateExercises(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `TemplateExercise`."""
+    orderBy: [TemplateExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TemplateExerciseCondition
+  ): TemplateExercisesConnection
+
+  """Reads and enables pagination through a set of `UserCredential`."""
+  allUserCredentials(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserCredential`."""
+    orderBy: [UserCredentialsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCredentialCondition
+  ): UserCredentialsConnection
+
+  """Reads and enables pagination through a set of `User`."""
+  allUsers(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCondition
+  ): UsersConnection
+
+  """Reads and enables pagination through a set of `WorkoutExercise`."""
+  allWorkoutExercises(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `WorkoutExercise`."""
+    orderBy: [WorkoutExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutExerciseCondition
+  ): WorkoutExercisesConnection
+
+  """Reads and enables pagination through a set of `WorkoutSchedule`."""
+  allWorkoutSchedules(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `WorkoutSchedule`."""
+    orderBy: [WorkoutSchedulesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutScheduleCondition
+  ): WorkoutSchedulesConnection
+
+  """Reads and enables pagination through a set of `WorkoutTemplate`."""
+  allWorkoutTemplates(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `WorkoutTemplate`."""
+    orderBy: [WorkoutTemplatesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutTemplateCondition
+  ): WorkoutTemplatesConnection
+
+  """Reads and enables pagination through a set of `Workout`."""
+  allWorkouts(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Workout`."""
+    orderBy: [WorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutCondition
+  ): WorkoutsConnection
+  exerciseById(id: UUID!): Exercise
+  migrationById(id: Int!): Migration
+  migrationByName(name: String!): Migration
+  scheduledWorkoutById(id: UUID!): ScheduledWorkout
+  scheduledWorkoutByScheduleIdAndDayOfWeek(scheduleId: UUID!, dayOfWeek: Int!): ScheduledWorkout
+  setById(id: UUID!): Set
+  templateExerciseById(id: UUID!): TemplateExercise
+  userCredentialById(id: UUID!): UserCredential
+  userCredentialByCredentialId(credentialId: String!): UserCredential
+  userById(id: UUID!): User
+  userByEmail(email: String!): User
+  userByUsername(username: String!): User
+  workoutExerciseById(id: UUID!): WorkoutExercise
+  workoutScheduleById(id: UUID!): WorkoutSchedule
+  workoutTemplateById(id: UUID!): WorkoutTemplate
+  workoutById(id: UUID!): Workout
+  currentUserId: UUID
+
+  """Reads a single `Exercise` using its globally unique `ID`."""
+  exercise(
+    """The globally unique `ID` to be used in selecting a single `Exercise`."""
+    nodeId: ID!
+  ): Exercise
+
+  """Reads a single `Migration` using its globally unique `ID`."""
+  migration(
+    """The globally unique `ID` to be used in selecting a single `Migration`."""
+    nodeId: ID!
+  ): Migration
+
+  """Reads a single `ScheduledWorkout` using its globally unique `ID`."""
+  scheduledWorkout(
+    """
+    The globally unique `ID` to be used in selecting a single `ScheduledWorkout`.
+    """
+    nodeId: ID!
+  ): ScheduledWorkout
+
+  """Reads a single `Set` using its globally unique `ID`."""
+  set(
+    """The globally unique `ID` to be used in selecting a single `Set`."""
+    nodeId: ID!
+  ): Set
+
+  """Reads a single `TemplateExercise` using its globally unique `ID`."""
+  templateExercise(
+    """
+    The globally unique `ID` to be used in selecting a single `TemplateExercise`.
+    """
+    nodeId: ID!
+  ): TemplateExercise
+
+  """Reads a single `UserCredential` using its globally unique `ID`."""
+  userCredential(
+    """
+    The globally unique `ID` to be used in selecting a single `UserCredential`.
+    """
+    nodeId: ID!
+  ): UserCredential
+
+  """Reads a single `User` using its globally unique `ID`."""
+  user(
+    """The globally unique `ID` to be used in selecting a single `User`."""
+    nodeId: ID!
+  ): User
+
+  """Reads a single `WorkoutExercise` using its globally unique `ID`."""
+  workoutExercise(
+    """
+    The globally unique `ID` to be used in selecting a single `WorkoutExercise`.
+    """
+    nodeId: ID!
+  ): WorkoutExercise
+
+  """Reads a single `WorkoutSchedule` using its globally unique `ID`."""
+  workoutSchedule(
+    """
+    The globally unique `ID` to be used in selecting a single `WorkoutSchedule`.
+    """
+    nodeId: ID!
+  ): WorkoutSchedule
+
+  """Reads a single `WorkoutTemplate` using its globally unique `ID`."""
+  workoutTemplate(
+    """
+    The globally unique `ID` to be used in selecting a single `WorkoutTemplate`.
+    """
+    nodeId: ID!
+  ): WorkoutTemplate
+
+  """Reads a single `Workout` using its globally unique `ID`."""
+  workout(
+    """The globally unique `ID` to be used in selecting a single `Workout`."""
+    nodeId: ID!
+  ): Workout
+}
+
+"""An object with a globally unique `ID`."""
+interface Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+}
+
+"""A connection to a list of `Exercise` values."""
+type ExercisesConnection {
+  """A list of `Exercise` objects."""
+  nodes: [Exercise!]!
+
+  """
+  A list of edges which contains the `Exercise` and cursor to aid in pagination.
+  """
+  edges: [ExercisesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Exercise` you could get from the connection."""
+  totalCount: Int!
+}
+
+type Exercise implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  name: String!
+  description: String
+  category: String
+  muscleGroups: [String]
+  createdAt: Datetime!
+  updatedAt: Datetime!
+
+  """Reads a single `User` that is related to this `Exercise`."""
+  userByUserId: User
+
+  """Reads and enables pagination through a set of `WorkoutExercise`."""
+  workoutExercisesByExerciseId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `WorkoutExercise`."""
+    orderBy: [WorkoutExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutExerciseCondition
+  ): WorkoutExercisesConnection!
+
+  """Reads and enables pagination through a set of `TemplateExercise`."""
+  templateExercisesByExerciseId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `TemplateExercise`."""
+    orderBy: [TemplateExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TemplateExerciseCondition
+  ): TemplateExercisesConnection!
+}
+
+"""
+A universally unique identifier as defined by [RFC 4122](https://tools.ietf.org/html/rfc4122).
+"""
+scalar UUID
+
+"""
+A point in time as described by the [ISO
+8601](https://en.wikipedia.org/wiki/ISO_8601) standard. May or may not include a timezone.
+"""
+scalar Datetime
+
+type User implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  email: String!
+  username: String!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+
+  """Reads and enables pagination through a set of `UserCredential`."""
+  userCredentialsByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `UserCredential`."""
+    orderBy: [UserCredentialsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: UserCredentialCondition
+  ): UserCredentialsConnection!
+
+  """Reads and enables pagination through a set of `Exercise`."""
+  exercisesByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Exercise`."""
+    orderBy: [ExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ExerciseCondition
+  ): ExercisesConnection!
+
+  """Reads and enables pagination through a set of `Workout`."""
+  workoutsByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Workout`."""
+    orderBy: [WorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutCondition
+  ): WorkoutsConnection!
+
+  """Reads and enables pagination through a set of `WorkoutTemplate`."""
+  workoutTemplatesByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `WorkoutTemplate`."""
+    orderBy: [WorkoutTemplatesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutTemplateCondition
+  ): WorkoutTemplatesConnection!
+
+  """Reads and enables pagination through a set of `WorkoutSchedule`."""
+  workoutSchedulesByUserId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `WorkoutSchedule`."""
+    orderBy: [WorkoutSchedulesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutScheduleCondition
+  ): WorkoutSchedulesConnection!
+}
+
+"""A connection to a list of `UserCredential` values."""
+type UserCredentialsConnection {
+  """A list of `UserCredential` objects."""
+  nodes: [UserCredential!]!
+
+  """
+  A list of edges which contains the `UserCredential` and cursor to aid in pagination.
+  """
+  edges: [UserCredentialsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `UserCredential` you could get from the connection."""
+  totalCount: Int!
+}
+
+type UserCredential implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  credentialId: String!
+  publicKey: String!
+  counter: BigInt!
+  transports: [String]
+  createdAt: Datetime!
+  lastUsedAt: Datetime
+
+  """Reads a single `User` that is related to this `UserCredential`."""
+  userByUserId: User
+}
+
+"""
+A signed eight-byte integer. The upper big integer values are greater than the
+max value for a JavaScript number. Therefore all big integers will be output as
+strings and not numbers.
+"""
+scalar BigInt
+
+"""A `UserCredential` edge in the connection."""
+type UserCredentialsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `UserCredential` at the end of the edge."""
+  node: UserCredential!
+}
+
+"""A location in a connection that can be used for resuming pagination."""
+scalar Cursor
+
+"""Information about pagination in a connection."""
+type PageInfo {
+  """When paginating forwards, are there more items?"""
+  hasNextPage: Boolean!
+
+  """When paginating backwards, are there more items?"""
+  hasPreviousPage: Boolean!
+
+  """When paginating backwards, the cursor to continue."""
+  startCursor: Cursor
+
+  """When paginating forwards, the cursor to continue."""
+  endCursor: Cursor
+}
+
+"""Methods to use when ordering `UserCredential`."""
+enum UserCredentialsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  CREDENTIAL_ID_ASC
+  CREDENTIAL_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `UserCredential` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input UserCredentialCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: UUID
+
+  """Checks for equality with the object’s `credentialId` field."""
+  credentialId: String
+}
+
+"""Methods to use when ordering `Exercise`."""
+enum ExercisesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Exercise` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input ExerciseCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: UUID
+}
+
+"""A connection to a list of `Workout` values."""
+type WorkoutsConnection {
+  """A list of `Workout` objects."""
+  nodes: [Workout!]!
+
+  """
+  A list of edges which contains the `Workout` and cursor to aid in pagination.
+  """
+  edges: [WorkoutsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Workout` you could get from the connection."""
+  totalCount: Int!
+}
+
+type Workout implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  name: String!
+  date: Date!
+  notes: String
+  completed: Boolean!
+  durationMinutes: Int
+  createdAt: Datetime!
+  updatedAt: Datetime!
+
+  """Reads a single `User` that is related to this `Workout`."""
+  userByUserId: User
+
+  """Reads and enables pagination through a set of `WorkoutExercise`."""
+  workoutExercisesByWorkoutId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `WorkoutExercise`."""
+    orderBy: [WorkoutExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: WorkoutExerciseCondition
+  ): WorkoutExercisesConnection!
+}
+
+"""The day, does not include a time."""
+scalar Date
+
+"""A connection to a list of `WorkoutExercise` values."""
+type WorkoutExercisesConnection {
+  """A list of `WorkoutExercise` objects."""
+  nodes: [WorkoutExercise!]!
+
+  """
+  A list of edges which contains the `WorkoutExercise` and cursor to aid in pagination.
+  """
+  edges: [WorkoutExercisesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `WorkoutExercise` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type WorkoutExercise implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  workoutId: UUID!
+  exerciseId: UUID!
+  orderIndex: Int!
+  notes: String
+  createdAt: Datetime!
+
+  """Reads a single `Workout` that is related to this `WorkoutExercise`."""
+  workoutByWorkoutId: Workout
+
+  """Reads a single `Exercise` that is related to this `WorkoutExercise`."""
+  exerciseByExerciseId: Exercise
+
+  """Reads and enables pagination through a set of `Set`."""
+  setsByWorkoutExerciseId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `Set`."""
+    orderBy: [SetsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: SetCondition
+  ): SetsConnection!
+}
+
+"""A connection to a list of `Set` values."""
+type SetsConnection {
+  """A list of `Set` objects."""
+  nodes: [Set!]!
+
+  """
+  A list of edges which contains the `Set` and cursor to aid in pagination.
+  """
+  edges: [SetsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Set` you could get from the connection."""
+  totalCount: Int!
+}
+
+type Set implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  workoutExerciseId: UUID!
+  setNumber: Int!
+  weight: BigFloat
+  reps: Int
+  rpe: BigFloat
+  distance: BigFloat
+  durationSeconds: Int
+  notes: String
+  completed: Boolean!
+  createdAt: Datetime!
+
+  """Reads a single `WorkoutExercise` that is related to this `Set`."""
+  workoutExerciseByWorkoutExerciseId: WorkoutExercise
+}
+
+"""
+A floating point number that requires more precision than IEEE 754 binary 64
+"""
+scalar BigFloat
+
+"""A `Set` edge in the connection."""
+type SetsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Set` at the end of the edge."""
+  node: Set!
+}
+
+"""Methods to use when ordering `Set`."""
+enum SetsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  WORKOUT_EXERCISE_ID_ASC
+  WORKOUT_EXERCISE_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Set` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input SetCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `workoutExerciseId` field."""
+  workoutExerciseId: UUID
+}
+
+"""A `WorkoutExercise` edge in the connection."""
+type WorkoutExercisesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `WorkoutExercise` at the end of the edge."""
+  node: WorkoutExercise!
+}
+
+"""Methods to use when ordering `WorkoutExercise`."""
+enum WorkoutExercisesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  WORKOUT_ID_ASC
+  WORKOUT_ID_DESC
+  EXERCISE_ID_ASC
+  EXERCISE_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `WorkoutExercise` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input WorkoutExerciseCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `workoutId` field."""
+  workoutId: UUID
+
+  """Checks for equality with the object’s `exerciseId` field."""
+  exerciseId: UUID
+}
+
+"""A `Workout` edge in the connection."""
+type WorkoutsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Workout` at the end of the edge."""
+  node: Workout!
+}
+
+"""Methods to use when ordering `Workout`."""
+enum WorkoutsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  DATE_ASC
+  DATE_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Workout` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input WorkoutCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: UUID
+
+  """Checks for equality with the object’s `date` field."""
+  date: Date
+}
+
+"""A connection to a list of `WorkoutTemplate` values."""
+type WorkoutTemplatesConnection {
+  """A list of `WorkoutTemplate` objects."""
+  nodes: [WorkoutTemplate!]!
+
+  """
+  A list of edges which contains the `WorkoutTemplate` and cursor to aid in pagination.
+  """
+  edges: [WorkoutTemplatesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `WorkoutTemplate` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type WorkoutTemplate implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  name: String!
+  description: String
+  isPublic: Boolean!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+
+  """Reads a single `User` that is related to this `WorkoutTemplate`."""
+  userByUserId: User
+
+  """Reads and enables pagination through a set of `TemplateExercise`."""
+  templateExercisesByTemplateId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `TemplateExercise`."""
+    orderBy: [TemplateExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: TemplateExerciseCondition
+  ): TemplateExercisesConnection!
+}
+
+"""A connection to a list of `TemplateExercise` values."""
+type TemplateExercisesConnection {
+  """A list of `TemplateExercise` objects."""
+  nodes: [TemplateExercise!]!
+
+  """
+  A list of edges which contains the `TemplateExercise` and cursor to aid in pagination.
+  """
+  edges: [TemplateExercisesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `TemplateExercise` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type TemplateExercise implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  templateId: UUID!
+  exerciseId: UUID!
+  orderIndex: Int!
+  targetSets: Int
+  targetReps: Int
+  notes: String
+  createdAt: Datetime!
+
+  """
+  Reads a single `WorkoutTemplate` that is related to this `TemplateExercise`.
+  """
+  workoutTemplateByTemplateId: WorkoutTemplate
+
+  """Reads a single `Exercise` that is related to this `TemplateExercise`."""
+  exerciseByExerciseId: Exercise
+}
+
+"""A `TemplateExercise` edge in the connection."""
+type TemplateExercisesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `TemplateExercise` at the end of the edge."""
+  node: TemplateExercise!
+}
+
+"""Methods to use when ordering `TemplateExercise`."""
+enum TemplateExercisesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  TEMPLATE_ID_ASC
+  TEMPLATE_ID_DESC
+  EXERCISE_ID_ASC
+  EXERCISE_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `TemplateExercise` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input TemplateExerciseCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `templateId` field."""
+  templateId: UUID
+
+  """Checks for equality with the object’s `exerciseId` field."""
+  exerciseId: UUID
+}
+
+"""A `WorkoutTemplate` edge in the connection."""
+type WorkoutTemplatesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `WorkoutTemplate` at the end of the edge."""
+  node: WorkoutTemplate!
+}
+
+"""Methods to use when ordering `WorkoutTemplate`."""
+enum WorkoutTemplatesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `WorkoutTemplate` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input WorkoutTemplateCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: UUID
+}
+
+"""A connection to a list of `WorkoutSchedule` values."""
+type WorkoutSchedulesConnection {
+  """A list of `WorkoutSchedule` objects."""
+  nodes: [WorkoutSchedule!]!
+
+  """
+  A list of edges which contains the `WorkoutSchedule` and cursor to aid in pagination.
+  """
+  edges: [WorkoutSchedulesEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `WorkoutSchedule` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type WorkoutSchedule implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  userId: UUID!
+  name: String!
+  isActive: Boolean!
+  createdAt: Datetime!
+  updatedAt: Datetime!
+
+  """Reads a single `User` that is related to this `WorkoutSchedule`."""
+  userByUserId: User
+
+  """Reads and enables pagination through a set of `ScheduledWorkout`."""
+  scheduledWorkoutsByScheduleId(
+    """Only read the first `n` values of the set."""
+    first: Int
+
+    """Only read the last `n` values of the set."""
+    last: Int
+
+    """
+    Skip the first `n` values from our `after` cursor, an alternative to cursor
+    based pagination. May not be used with `last`.
+    """
+    offset: Int
+
+    """Read all values in the set before (above) this cursor."""
+    before: Cursor
+
+    """Read all values in the set after (below) this cursor."""
+    after: Cursor
+
+    """The method to use when ordering `ScheduledWorkout`."""
+    orderBy: [ScheduledWorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+
+    """
+    A condition to be used in determining which values should be returned by the collection.
+    """
+    condition: ScheduledWorkoutCondition
+  ): ScheduledWorkoutsConnection!
+}
+
+"""A connection to a list of `ScheduledWorkout` values."""
+type ScheduledWorkoutsConnection {
+  """A list of `ScheduledWorkout` objects."""
+  nodes: [ScheduledWorkout!]!
+
+  """
+  A list of edges which contains the `ScheduledWorkout` and cursor to aid in pagination.
+  """
+  edges: [ScheduledWorkoutsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """
+  The count of *all* `ScheduledWorkout` you could get from the connection.
+  """
+  totalCount: Int!
+}
+
+type ScheduledWorkout implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: UUID!
+  scheduleId: UUID!
+  templateId: UUID!
+  dayOfWeek: Int!
+  createdAt: Datetime!
+
+  """
+  Reads a single `WorkoutSchedule` that is related to this `ScheduledWorkout`.
+  """
+  workoutScheduleByScheduleId: WorkoutSchedule
+}
+
+"""A `ScheduledWorkout` edge in the connection."""
+type ScheduledWorkoutsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `ScheduledWorkout` at the end of the edge."""
+  node: ScheduledWorkout!
+}
+
+"""Methods to use when ordering `ScheduledWorkout`."""
+enum ScheduledWorkoutsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  SCHEDULE_ID_ASC
+  SCHEDULE_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `ScheduledWorkout` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input ScheduledWorkoutCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `scheduleId` field."""
+  scheduleId: UUID
+}
+
+"""A `WorkoutSchedule` edge in the connection."""
+type WorkoutSchedulesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `WorkoutSchedule` at the end of the edge."""
+  node: WorkoutSchedule!
+}
+
+"""Methods to use when ordering `WorkoutSchedule`."""
+enum WorkoutSchedulesOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  USER_ID_ASC
+  USER_ID_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `WorkoutSchedule` object types. All fields are
+tested for equality and combined with a logical ‘and.’
+"""
+input WorkoutScheduleCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `userId` field."""
+  userId: UUID
+}
+
+"""A `Exercise` edge in the connection."""
+type ExercisesEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Exercise` at the end of the edge."""
+  node: Exercise!
+}
+
+"""A connection to a list of `Migration` values."""
+type MigrationsConnection {
+  """A list of `Migration` objects."""
+  nodes: [Migration!]!
+
+  """
+  A list of edges which contains the `Migration` and cursor to aid in pagination.
+  """
+  edges: [MigrationsEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `Migration` you could get from the connection."""
+  totalCount: Int!
+}
+
+type Migration implements Node {
+  """
+  A globally unique identifier. Can be used in various places throughout the system to identify this single value.
+  """
+  nodeId: ID!
+  id: Int!
+  name: String!
+  executedAt: Datetime!
+}
+
+"""A `Migration` edge in the connection."""
+type MigrationsEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `Migration` at the end of the edge."""
+  node: Migration!
+}
+
+"""Methods to use when ordering `Migration`."""
+enum MigrationsOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  NAME_ASC
+  NAME_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `Migration` object types. All fields are tested
+for equality and combined with a logical ‘and.’
+"""
+input MigrationCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: Int
+
+  """Checks for equality with the object’s `name` field."""
+  name: String
+}
+
+"""A connection to a list of `User` values."""
+type UsersConnection {
+  """A list of `User` objects."""
+  nodes: [User!]!
+
+  """
+  A list of edges which contains the `User` and cursor to aid in pagination.
+  """
+  edges: [UsersEdge!]!
+
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """The count of *all* `User` you could get from the connection."""
+  totalCount: Int!
+}
+
+"""A `User` edge in the connection."""
+type UsersEdge {
+  """A cursor for use in pagination."""
+  cursor: Cursor
+
+  """The `User` at the end of the edge."""
+  node: User!
+}
+
+"""Methods to use when ordering `User`."""
+enum UsersOrderBy {
+  NATURAL
+  ID_ASC
+  ID_DESC
+  EMAIL_ASC
+  EMAIL_DESC
+  USERNAME_ASC
+  USERNAME_DESC
+  PRIMARY_KEY_ASC
+  PRIMARY_KEY_DESC
+}
+
+"""
+A condition to be used against `User` object types. All fields are tested for equality and combined with a logical ‘and.’
+"""
+input UserCondition {
+  """Checks for equality with the object’s `id` field."""
+  id: UUID
+
+  """Checks for equality with the object’s `email` field."""
+  email: String
+
+  """Checks for equality with the object’s `username` field."""
+  username: String
+}
+
+"""
+The root mutation type which contains root level fields which mutate data.
+"""
+type Mutation {
+  """Creates a single `Exercise`."""
+  createExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateExerciseInput!
+  ): CreateExercisePayload
+
+  """Creates a single `Migration`."""
+  createMigration(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateMigrationInput!
+  ): CreateMigrationPayload
+
+  """Creates a single `ScheduledWorkout`."""
+  createScheduledWorkout(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateScheduledWorkoutInput!
+  ): CreateScheduledWorkoutPayload
+
+  """Creates a single `Set`."""
+  createSet(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateSetInput!
+  ): CreateSetPayload
+
+  """Creates a single `TemplateExercise`."""
+  createTemplateExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateTemplateExerciseInput!
+  ): CreateTemplateExercisePayload
+
+  """Creates a single `UserCredential`."""
+  createUserCredential(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserCredentialInput!
+  ): CreateUserCredentialPayload
+
+  """Creates a single `User`."""
+  createUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateUserInput!
+  ): CreateUserPayload
+
+  """Creates a single `WorkoutExercise`."""
+  createWorkoutExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateWorkoutExerciseInput!
+  ): CreateWorkoutExercisePayload
+
+  """Creates a single `WorkoutSchedule`."""
+  createWorkoutSchedule(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateWorkoutScheduleInput!
+  ): CreateWorkoutSchedulePayload
+
+  """Creates a single `WorkoutTemplate`."""
+  createWorkoutTemplate(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateWorkoutTemplateInput!
+  ): CreateWorkoutTemplatePayload
+
+  """Creates a single `Workout`."""
+  createWorkout(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: CreateWorkoutInput!
+  ): CreateWorkoutPayload
+
+  """Updates a single `Exercise` using its globally unique id and a patch."""
+  updateExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateExerciseInput!
+  ): UpdateExercisePayload
+
+  """Updates a single `Exercise` using a unique key and a patch."""
+  updateExerciseById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateExerciseByIdInput!
+  ): UpdateExercisePayload
+
+  """Updates a single `Migration` using its globally unique id and a patch."""
+  updateMigration(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMigrationInput!
+  ): UpdateMigrationPayload
+
+  """Updates a single `Migration` using a unique key and a patch."""
+  updateMigrationById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMigrationByIdInput!
+  ): UpdateMigrationPayload
+
+  """Updates a single `Migration` using a unique key and a patch."""
+  updateMigrationByName(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateMigrationByNameInput!
+  ): UpdateMigrationPayload
+
+  """
+  Updates a single `ScheduledWorkout` using its globally unique id and a patch.
+  """
+  updateScheduledWorkout(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateScheduledWorkoutInput!
+  ): UpdateScheduledWorkoutPayload
+
+  """Updates a single `ScheduledWorkout` using a unique key and a patch."""
+  updateScheduledWorkoutById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateScheduledWorkoutByIdInput!
+  ): UpdateScheduledWorkoutPayload
+
+  """Updates a single `ScheduledWorkout` using a unique key and a patch."""
+  updateScheduledWorkoutByScheduleIdAndDayOfWeek(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateScheduledWorkoutByScheduleIdAndDayOfWeekInput!
+  ): UpdateScheduledWorkoutPayload
+
+  """Updates a single `Set` using its globally unique id and a patch."""
+  updateSet(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateSetInput!
+  ): UpdateSetPayload
+
+  """Updates a single `Set` using a unique key and a patch."""
+  updateSetById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateSetByIdInput!
+  ): UpdateSetPayload
+
+  """
+  Updates a single `TemplateExercise` using its globally unique id and a patch.
+  """
+  updateTemplateExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateTemplateExerciseInput!
+  ): UpdateTemplateExercisePayload
+
+  """Updates a single `TemplateExercise` using a unique key and a patch."""
+  updateTemplateExerciseById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateTemplateExerciseByIdInput!
+  ): UpdateTemplateExercisePayload
+
+  """
+  Updates a single `UserCredential` using its globally unique id and a patch.
+  """
+  updateUserCredential(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserCredentialInput!
+  ): UpdateUserCredentialPayload
+
+  """Updates a single `UserCredential` using a unique key and a patch."""
+  updateUserCredentialById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserCredentialByIdInput!
+  ): UpdateUserCredentialPayload
+
+  """Updates a single `UserCredential` using a unique key and a patch."""
+  updateUserCredentialByCredentialId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserCredentialByCredentialIdInput!
+  ): UpdateUserCredentialPayload
+
+  """Updates a single `User` using its globally unique id and a patch."""
+  updateUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByIdInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserByEmail(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByEmailInput!
+  ): UpdateUserPayload
+
+  """Updates a single `User` using a unique key and a patch."""
+  updateUserByUsername(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateUserByUsernameInput!
+  ): UpdateUserPayload
+
+  """
+  Updates a single `WorkoutExercise` using its globally unique id and a patch.
+  """
+  updateWorkoutExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutExerciseInput!
+  ): UpdateWorkoutExercisePayload
+
+  """Updates a single `WorkoutExercise` using a unique key and a patch."""
+  updateWorkoutExerciseById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutExerciseByIdInput!
+  ): UpdateWorkoutExercisePayload
+
+  """
+  Updates a single `WorkoutSchedule` using its globally unique id and a patch.
+  """
+  updateWorkoutSchedule(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutScheduleInput!
+  ): UpdateWorkoutSchedulePayload
+
+  """Updates a single `WorkoutSchedule` using a unique key and a patch."""
+  updateWorkoutScheduleById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutScheduleByIdInput!
+  ): UpdateWorkoutSchedulePayload
+
+  """
+  Updates a single `WorkoutTemplate` using its globally unique id and a patch.
+  """
+  updateWorkoutTemplate(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutTemplateInput!
+  ): UpdateWorkoutTemplatePayload
+
+  """Updates a single `WorkoutTemplate` using a unique key and a patch."""
+  updateWorkoutTemplateById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutTemplateByIdInput!
+  ): UpdateWorkoutTemplatePayload
+
+  """Updates a single `Workout` using its globally unique id and a patch."""
+  updateWorkout(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutInput!
+  ): UpdateWorkoutPayload
+
+  """Updates a single `Workout` using a unique key and a patch."""
+  updateWorkoutById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: UpdateWorkoutByIdInput!
+  ): UpdateWorkoutPayload
+
+  """Deletes a single `Exercise` using its globally unique id."""
+  deleteExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteExerciseInput!
+  ): DeleteExercisePayload
+
+  """Deletes a single `Exercise` using a unique key."""
+  deleteExerciseById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteExerciseByIdInput!
+  ): DeleteExercisePayload
+
+  """Deletes a single `Migration` using its globally unique id."""
+  deleteMigration(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMigrationInput!
+  ): DeleteMigrationPayload
+
+  """Deletes a single `Migration` using a unique key."""
+  deleteMigrationById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMigrationByIdInput!
+  ): DeleteMigrationPayload
+
+  """Deletes a single `Migration` using a unique key."""
+  deleteMigrationByName(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteMigrationByNameInput!
+  ): DeleteMigrationPayload
+
+  """Deletes a single `ScheduledWorkout` using its globally unique id."""
+  deleteScheduledWorkout(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteScheduledWorkoutInput!
+  ): DeleteScheduledWorkoutPayload
+
+  """Deletes a single `ScheduledWorkout` using a unique key."""
+  deleteScheduledWorkoutById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteScheduledWorkoutByIdInput!
+  ): DeleteScheduledWorkoutPayload
+
+  """Deletes a single `ScheduledWorkout` using a unique key."""
+  deleteScheduledWorkoutByScheduleIdAndDayOfWeek(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteScheduledWorkoutByScheduleIdAndDayOfWeekInput!
+  ): DeleteScheduledWorkoutPayload
+
+  """Deletes a single `Set` using its globally unique id."""
+  deleteSet(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteSetInput!
+  ): DeleteSetPayload
+
+  """Deletes a single `Set` using a unique key."""
+  deleteSetById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteSetByIdInput!
+  ): DeleteSetPayload
+
+  """Deletes a single `TemplateExercise` using its globally unique id."""
+  deleteTemplateExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteTemplateExerciseInput!
+  ): DeleteTemplateExercisePayload
+
+  """Deletes a single `TemplateExercise` using a unique key."""
+  deleteTemplateExerciseById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteTemplateExerciseByIdInput!
+  ): DeleteTemplateExercisePayload
+
+  """Deletes a single `UserCredential` using its globally unique id."""
+  deleteUserCredential(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserCredentialInput!
+  ): DeleteUserCredentialPayload
+
+  """Deletes a single `UserCredential` using a unique key."""
+  deleteUserCredentialById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserCredentialByIdInput!
+  ): DeleteUserCredentialPayload
+
+  """Deletes a single `UserCredential` using a unique key."""
+  deleteUserCredentialByCredentialId(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserCredentialByCredentialIdInput!
+  ): DeleteUserCredentialPayload
+
+  """Deletes a single `User` using its globally unique id."""
+  deleteUser(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByIdInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserByEmail(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByEmailInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `User` using a unique key."""
+  deleteUserByUsername(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteUserByUsernameInput!
+  ): DeleteUserPayload
+
+  """Deletes a single `WorkoutExercise` using its globally unique id."""
+  deleteWorkoutExercise(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutExerciseInput!
+  ): DeleteWorkoutExercisePayload
+
+  """Deletes a single `WorkoutExercise` using a unique key."""
+  deleteWorkoutExerciseById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutExerciseByIdInput!
+  ): DeleteWorkoutExercisePayload
+
+  """Deletes a single `WorkoutSchedule` using its globally unique id."""
+  deleteWorkoutSchedule(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutScheduleInput!
+  ): DeleteWorkoutSchedulePayload
+
+  """Deletes a single `WorkoutSchedule` using a unique key."""
+  deleteWorkoutScheduleById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutScheduleByIdInput!
+  ): DeleteWorkoutSchedulePayload
+
+  """Deletes a single `WorkoutTemplate` using its globally unique id."""
+  deleteWorkoutTemplate(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutTemplateInput!
+  ): DeleteWorkoutTemplatePayload
+
+  """Deletes a single `WorkoutTemplate` using a unique key."""
+  deleteWorkoutTemplateById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutTemplateByIdInput!
+  ): DeleteWorkoutTemplatePayload
+
+  """Deletes a single `Workout` using its globally unique id."""
+  deleteWorkout(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutInput!
+  ): DeleteWorkoutPayload
+
+  """Deletes a single `Workout` using a unique key."""
+  deleteWorkoutById(
+    """
+    The exclusive input argument for this mutation. An object type, make sure to see documentation for this object’s fields.
+    """
+    input: DeleteWorkoutByIdInput!
+  ): DeleteWorkoutPayload
+  registerUser(email: String!, username: String!): RegistrationOptions!
+  verifyRegistration(email: String!, response: RegistrationResponseInput!): AuthResult!
+  startAuthentication(email: String): AuthenticationOptions!
+  verifyAuthentication(response: AuthenticationResponseInput!): AuthResult!
+}
+
+"""The output of our create `Exercise` mutation."""
+type CreateExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Exercise` that was created by this mutation."""
+  exercise: Exercise
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Exercise`."""
+  userByUserId: User
+
+  """An edge for our `Exercise`. May be used by Relay 1."""
+  exerciseEdge(
+    """The method to use when ordering `Exercise`."""
+    orderBy: [ExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ExercisesEdge
+}
+
+"""All input for the create `Exercise` mutation."""
+input CreateExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Exercise` to be created by this mutation."""
+  exercise: ExerciseInput!
+}
+
+"""An input for mutations affecting `Exercise`"""
+input ExerciseInput {
+  id: UUID
+  userId: UUID!
+  name: String!
+  description: String
+  category: String
+  muscleGroups: [String]
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""The output of our create `Migration` mutation."""
+type CreateMigrationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Migration` that was created by this mutation."""
+  migration: Migration
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Migration`. May be used by Relay 1."""
+  migrationEdge(
+    """The method to use when ordering `Migration`."""
+    orderBy: [MigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MigrationsEdge
+}
+
+"""All input for the create `Migration` mutation."""
+input CreateMigrationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Migration` to be created by this mutation."""
+  migration: MigrationInput!
+}
+
+"""An input for mutations affecting `Migration`"""
+input MigrationInput {
+  id: Int
+  name: String!
+  executedAt: Datetime
+}
+
+"""The output of our create `ScheduledWorkout` mutation."""
+type CreateScheduledWorkoutPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ScheduledWorkout` that was created by this mutation."""
+  scheduledWorkout: ScheduledWorkout
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `WorkoutSchedule` that is related to this `ScheduledWorkout`.
+  """
+  workoutScheduleByScheduleId: WorkoutSchedule
+
+  """An edge for our `ScheduledWorkout`. May be used by Relay 1."""
+  scheduledWorkoutEdge(
+    """The method to use when ordering `ScheduledWorkout`."""
+    orderBy: [ScheduledWorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ScheduledWorkoutsEdge
+}
+
+"""All input for the create `ScheduledWorkout` mutation."""
+input CreateScheduledWorkoutInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `ScheduledWorkout` to be created by this mutation."""
+  scheduledWorkout: ScheduledWorkoutInput!
+}
+
+"""An input for mutations affecting `ScheduledWorkout`"""
+input ScheduledWorkoutInput {
+  id: UUID
+  scheduleId: UUID!
+  templateId: UUID!
+  dayOfWeek: Int!
+  createdAt: Datetime
+}
+
+"""The output of our create `Set` mutation."""
+type CreateSetPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Set` that was created by this mutation."""
+  set: Set
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `WorkoutExercise` that is related to this `Set`."""
+  workoutExerciseByWorkoutExerciseId: WorkoutExercise
+
+  """An edge for our `Set`. May be used by Relay 1."""
+  setEdge(
+    """The method to use when ordering `Set`."""
+    orderBy: [SetsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): SetsEdge
+}
+
+"""All input for the create `Set` mutation."""
+input CreateSetInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Set` to be created by this mutation."""
+  set: SetInput!
+}
+
+"""An input for mutations affecting `Set`"""
+input SetInput {
+  id: UUID
+  workoutExerciseId: UUID!
+  setNumber: Int!
+  weight: BigFloat
+  reps: Int
+  rpe: BigFloat
+  distance: BigFloat
+  durationSeconds: Int
+  notes: String
+  completed: Boolean
+  createdAt: Datetime
+}
+
+"""The output of our create `TemplateExercise` mutation."""
+type CreateTemplateExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `TemplateExercise` that was created by this mutation."""
+  templateExercise: TemplateExercise
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `WorkoutTemplate` that is related to this `TemplateExercise`.
+  """
+  workoutTemplateByTemplateId: WorkoutTemplate
+
+  """Reads a single `Exercise` that is related to this `TemplateExercise`."""
+  exerciseByExerciseId: Exercise
+
+  """An edge for our `TemplateExercise`. May be used by Relay 1."""
+  templateExerciseEdge(
+    """The method to use when ordering `TemplateExercise`."""
+    orderBy: [TemplateExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): TemplateExercisesEdge
+}
+
+"""All input for the create `TemplateExercise` mutation."""
+input CreateTemplateExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `TemplateExercise` to be created by this mutation."""
+  templateExercise: TemplateExerciseInput!
+}
+
+"""An input for mutations affecting `TemplateExercise`"""
+input TemplateExerciseInput {
+  id: UUID
+  templateId: UUID!
+  exerciseId: UUID!
+  orderIndex: Int!
+  targetSets: Int
+  targetReps: Int
+  notes: String
+  createdAt: Datetime
+}
+
+"""The output of our create `UserCredential` mutation."""
+type CreateUserCredentialPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserCredential` that was created by this mutation."""
+  userCredential: UserCredential
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserCredential`."""
+  userByUserId: User
+
+  """An edge for our `UserCredential`. May be used by Relay 1."""
+  userCredentialEdge(
+    """The method to use when ordering `UserCredential`."""
+    orderBy: [UserCredentialsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserCredentialsEdge
+}
+
+"""All input for the create `UserCredential` mutation."""
+input CreateUserCredentialInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `UserCredential` to be created by this mutation."""
+  userCredential: UserCredentialInput!
+}
+
+"""An input for mutations affecting `UserCredential`"""
+input UserCredentialInput {
+  id: UUID
+  userId: UUID!
+  credentialId: String!
+  publicKey: String!
+  counter: BigInt
+  transports: [String]
+  createdAt: Datetime
+  lastUsedAt: Datetime
+}
+
+"""The output of our create `User` mutation."""
+type CreateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was created by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the create `User` mutation."""
+input CreateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `User` to be created by this mutation."""
+  user: UserInput!
+}
+
+"""An input for mutations affecting `User`"""
+input UserInput {
+  id: UUID
+  email: String!
+  username: String!
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""The output of our create `WorkoutExercise` mutation."""
+type CreateWorkoutExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutExercise` that was created by this mutation."""
+  workoutExercise: WorkoutExercise
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Workout` that is related to this `WorkoutExercise`."""
+  workoutByWorkoutId: Workout
+
+  """Reads a single `Exercise` that is related to this `WorkoutExercise`."""
+  exerciseByExerciseId: Exercise
+
+  """An edge for our `WorkoutExercise`. May be used by Relay 1."""
+  workoutExerciseEdge(
+    """The method to use when ordering `WorkoutExercise`."""
+    orderBy: [WorkoutExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutExercisesEdge
+}
+
+"""All input for the create `WorkoutExercise` mutation."""
+input CreateWorkoutExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `WorkoutExercise` to be created by this mutation."""
+  workoutExercise: WorkoutExerciseInput!
+}
+
+"""An input for mutations affecting `WorkoutExercise`"""
+input WorkoutExerciseInput {
+  id: UUID
+  workoutId: UUID!
+  exerciseId: UUID!
+  orderIndex: Int!
+  notes: String
+  createdAt: Datetime
+}
+
+"""The output of our create `WorkoutSchedule` mutation."""
+type CreateWorkoutSchedulePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutSchedule` that was created by this mutation."""
+  workoutSchedule: WorkoutSchedule
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `WorkoutSchedule`."""
+  userByUserId: User
+
+  """An edge for our `WorkoutSchedule`. May be used by Relay 1."""
+  workoutScheduleEdge(
+    """The method to use when ordering `WorkoutSchedule`."""
+    orderBy: [WorkoutSchedulesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutSchedulesEdge
+}
+
+"""All input for the create `WorkoutSchedule` mutation."""
+input CreateWorkoutScheduleInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `WorkoutSchedule` to be created by this mutation."""
+  workoutSchedule: WorkoutScheduleInput!
+}
+
+"""An input for mutations affecting `WorkoutSchedule`"""
+input WorkoutScheduleInput {
+  id: UUID
+  userId: UUID!
+  name: String!
+  isActive: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""The output of our create `WorkoutTemplate` mutation."""
+type CreateWorkoutTemplatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutTemplate` that was created by this mutation."""
+  workoutTemplate: WorkoutTemplate
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `WorkoutTemplate`."""
+  userByUserId: User
+
+  """An edge for our `WorkoutTemplate`. May be used by Relay 1."""
+  workoutTemplateEdge(
+    """The method to use when ordering `WorkoutTemplate`."""
+    orderBy: [WorkoutTemplatesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutTemplatesEdge
+}
+
+"""All input for the create `WorkoutTemplate` mutation."""
+input CreateWorkoutTemplateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `WorkoutTemplate` to be created by this mutation."""
+  workoutTemplate: WorkoutTemplateInput!
+}
+
+"""An input for mutations affecting `WorkoutTemplate`"""
+input WorkoutTemplateInput {
+  id: UUID
+  userId: UUID!
+  name: String!
+  description: String
+  isPublic: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""The output of our create `Workout` mutation."""
+type CreateWorkoutPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Workout` that was created by this mutation."""
+  workout: Workout
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Workout`."""
+  userByUserId: User
+
+  """An edge for our `Workout`. May be used by Relay 1."""
+  workoutEdge(
+    """The method to use when ordering `Workout`."""
+    orderBy: [WorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutsEdge
+}
+
+"""All input for the create `Workout` mutation."""
+input CreateWorkoutInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """The `Workout` to be created by this mutation."""
+  workout: WorkoutInput!
+}
+
+"""An input for mutations affecting `Workout`"""
+input WorkoutInput {
+  id: UUID
+  userId: UUID!
+  name: String!
+  date: Date
+  notes: String
+  completed: Boolean
+  durationMinutes: Int
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""The output of our update `Exercise` mutation."""
+type UpdateExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Exercise` that was updated by this mutation."""
+  exercise: Exercise
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Exercise`."""
+  userByUserId: User
+
+  """An edge for our `Exercise`. May be used by Relay 1."""
+  exerciseEdge(
+    """The method to use when ordering `Exercise`."""
+    orderBy: [ExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ExercisesEdge
+}
+
+"""All input for the `updateExercise` mutation."""
+input UpdateExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Exercise` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Exercise` being updated.
+  """
+  exercisePatch: ExercisePatch!
+}
+
+"""
+Represents an update to a `Exercise`. Fields that are set will be updated.
+"""
+input ExercisePatch {
+  id: UUID
+  userId: UUID
+  name: String
+  description: String
+  category: String
+  muscleGroups: [String]
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""All input for the `updateExerciseById` mutation."""
+input UpdateExerciseByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Exercise` being updated.
+  """
+  exercisePatch: ExercisePatch!
+  id: UUID!
+}
+
+"""The output of our update `Migration` mutation."""
+type UpdateMigrationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Migration` that was updated by this mutation."""
+  migration: Migration
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Migration`. May be used by Relay 1."""
+  migrationEdge(
+    """The method to use when ordering `Migration`."""
+    orderBy: [MigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MigrationsEdge
+}
+
+"""All input for the `updateMigration` mutation."""
+input UpdateMigrationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Migration` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Migration` being updated.
+  """
+  migrationPatch: MigrationPatch!
+}
+
+"""
+Represents an update to a `Migration`. Fields that are set will be updated.
+"""
+input MigrationPatch {
+  id: Int
+  name: String
+  executedAt: Datetime
+}
+
+"""All input for the `updateMigrationById` mutation."""
+input UpdateMigrationByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Migration` being updated.
+  """
+  migrationPatch: MigrationPatch!
+  id: Int!
+}
+
+"""All input for the `updateMigrationByName` mutation."""
+input UpdateMigrationByNameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Migration` being updated.
+  """
+  migrationPatch: MigrationPatch!
+  name: String!
+}
+
+"""The output of our update `ScheduledWorkout` mutation."""
+type UpdateScheduledWorkoutPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ScheduledWorkout` that was updated by this mutation."""
+  scheduledWorkout: ScheduledWorkout
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `WorkoutSchedule` that is related to this `ScheduledWorkout`.
+  """
+  workoutScheduleByScheduleId: WorkoutSchedule
+
+  """An edge for our `ScheduledWorkout`. May be used by Relay 1."""
+  scheduledWorkoutEdge(
+    """The method to use when ordering `ScheduledWorkout`."""
+    orderBy: [ScheduledWorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ScheduledWorkoutsEdge
+}
+
+"""All input for the `updateScheduledWorkout` mutation."""
+input UpdateScheduledWorkoutInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ScheduledWorkout` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `ScheduledWorkout` being updated.
+  """
+  scheduledWorkoutPatch: ScheduledWorkoutPatch!
+}
+
+"""
+Represents an update to a `ScheduledWorkout`. Fields that are set will be updated.
+"""
+input ScheduledWorkoutPatch {
+  id: UUID
+  scheduleId: UUID
+  templateId: UUID
+  dayOfWeek: Int
+  createdAt: Datetime
+}
+
+"""All input for the `updateScheduledWorkoutById` mutation."""
+input UpdateScheduledWorkoutByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ScheduledWorkout` being updated.
+  """
+  scheduledWorkoutPatch: ScheduledWorkoutPatch!
+  id: UUID!
+}
+
+"""
+All input for the `updateScheduledWorkoutByScheduleIdAndDayOfWeek` mutation.
+"""
+input UpdateScheduledWorkoutByScheduleIdAndDayOfWeekInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `ScheduledWorkout` being updated.
+  """
+  scheduledWorkoutPatch: ScheduledWorkoutPatch!
+  scheduleId: UUID!
+  dayOfWeek: Int!
+}
+
+"""The output of our update `Set` mutation."""
+type UpdateSetPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Set` that was updated by this mutation."""
+  set: Set
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `WorkoutExercise` that is related to this `Set`."""
+  workoutExerciseByWorkoutExerciseId: WorkoutExercise
+
+  """An edge for our `Set`. May be used by Relay 1."""
+  setEdge(
+    """The method to use when ordering `Set`."""
+    orderBy: [SetsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): SetsEdge
+}
+
+"""All input for the `updateSet` mutation."""
+input UpdateSetInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Set` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Set` being updated.
+  """
+  setPatch: SetPatch!
+}
+
+"""Represents an update to a `Set`. Fields that are set will be updated."""
+input SetPatch {
+  id: UUID
+  workoutExerciseId: UUID
+  setNumber: Int
+  weight: BigFloat
+  reps: Int
+  rpe: BigFloat
+  distance: BigFloat
+  durationSeconds: Int
+  notes: String
+  completed: Boolean
+  createdAt: Datetime
+}
+
+"""All input for the `updateSetById` mutation."""
+input UpdateSetByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Set` being updated.
+  """
+  setPatch: SetPatch!
+  id: UUID!
+}
+
+"""The output of our update `TemplateExercise` mutation."""
+type UpdateTemplateExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `TemplateExercise` that was updated by this mutation."""
+  templateExercise: TemplateExercise
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `WorkoutTemplate` that is related to this `TemplateExercise`.
+  """
+  workoutTemplateByTemplateId: WorkoutTemplate
+
+  """Reads a single `Exercise` that is related to this `TemplateExercise`."""
+  exerciseByExerciseId: Exercise
+
+  """An edge for our `TemplateExercise`. May be used by Relay 1."""
+  templateExerciseEdge(
+    """The method to use when ordering `TemplateExercise`."""
+    orderBy: [TemplateExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): TemplateExercisesEdge
+}
+
+"""All input for the `updateTemplateExercise` mutation."""
+input UpdateTemplateExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `TemplateExercise` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `TemplateExercise` being updated.
+  """
+  templateExercisePatch: TemplateExercisePatch!
+}
+
+"""
+Represents an update to a `TemplateExercise`. Fields that are set will be updated.
+"""
+input TemplateExercisePatch {
+  id: UUID
+  templateId: UUID
+  exerciseId: UUID
+  orderIndex: Int
+  targetSets: Int
+  targetReps: Int
+  notes: String
+  createdAt: Datetime
+}
+
+"""All input for the `updateTemplateExerciseById` mutation."""
+input UpdateTemplateExerciseByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `TemplateExercise` being updated.
+  """
+  templateExercisePatch: TemplateExercisePatch!
+  id: UUID!
+}
+
+"""The output of our update `UserCredential` mutation."""
+type UpdateUserCredentialPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserCredential` that was updated by this mutation."""
+  userCredential: UserCredential
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserCredential`."""
+  userByUserId: User
+
+  """An edge for our `UserCredential`. May be used by Relay 1."""
+  userCredentialEdge(
+    """The method to use when ordering `UserCredential`."""
+    orderBy: [UserCredentialsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserCredentialsEdge
+}
+
+"""All input for the `updateUserCredential` mutation."""
+input UpdateUserCredentialInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `UserCredential` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `UserCredential` being updated.
+  """
+  userCredentialPatch: UserCredentialPatch!
+}
+
+"""
+Represents an update to a `UserCredential`. Fields that are set will be updated.
+"""
+input UserCredentialPatch {
+  id: UUID
+  userId: UUID
+  credentialId: String
+  publicKey: String
+  counter: BigInt
+  transports: [String]
+  createdAt: Datetime
+  lastUsedAt: Datetime
+}
+
+"""All input for the `updateUserCredentialById` mutation."""
+input UpdateUserCredentialByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `UserCredential` being updated.
+  """
+  userCredentialPatch: UserCredentialPatch!
+  id: UUID!
+}
+
+"""All input for the `updateUserCredentialByCredentialId` mutation."""
+input UpdateUserCredentialByCredentialIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `UserCredential` being updated.
+  """
+  userCredentialPatch: UserCredentialPatch!
+  credentialId: String!
+}
+
+"""The output of our update `User` mutation."""
+type UpdateUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was updated by this mutation."""
+  user: User
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the `updateUser` mutation."""
+input UpdateUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+}
+
+"""Represents an update to a `User`. Fields that are set will be updated."""
+input UserPatch {
+  id: UUID
+  email: String
+  username: String
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""All input for the `updateUserById` mutation."""
+input UpdateUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+  id: UUID!
+}
+
+"""All input for the `updateUserByEmail` mutation."""
+input UpdateUserByEmailInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+  email: String!
+}
+
+"""All input for the `updateUserByUsername` mutation."""
+input UpdateUserByUsernameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `User` being updated.
+  """
+  userPatch: UserPatch!
+  username: String!
+}
+
+"""The output of our update `WorkoutExercise` mutation."""
+type UpdateWorkoutExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutExercise` that was updated by this mutation."""
+  workoutExercise: WorkoutExercise
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Workout` that is related to this `WorkoutExercise`."""
+  workoutByWorkoutId: Workout
+
+  """Reads a single `Exercise` that is related to this `WorkoutExercise`."""
+  exerciseByExerciseId: Exercise
+
+  """An edge for our `WorkoutExercise`. May be used by Relay 1."""
+  workoutExerciseEdge(
+    """The method to use when ordering `WorkoutExercise`."""
+    orderBy: [WorkoutExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutExercisesEdge
+}
+
+"""All input for the `updateWorkoutExercise` mutation."""
+input UpdateWorkoutExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `WorkoutExercise` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `WorkoutExercise` being updated.
+  """
+  workoutExercisePatch: WorkoutExercisePatch!
+}
+
+"""
+Represents an update to a `WorkoutExercise`. Fields that are set will be updated.
+"""
+input WorkoutExercisePatch {
+  id: UUID
+  workoutId: UUID
+  exerciseId: UUID
+  orderIndex: Int
+  notes: String
+  createdAt: Datetime
+}
+
+"""All input for the `updateWorkoutExerciseById` mutation."""
+input UpdateWorkoutExerciseByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `WorkoutExercise` being updated.
+  """
+  workoutExercisePatch: WorkoutExercisePatch!
+  id: UUID!
+}
+
+"""The output of our update `WorkoutSchedule` mutation."""
+type UpdateWorkoutSchedulePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutSchedule` that was updated by this mutation."""
+  workoutSchedule: WorkoutSchedule
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `WorkoutSchedule`."""
+  userByUserId: User
+
+  """An edge for our `WorkoutSchedule`. May be used by Relay 1."""
+  workoutScheduleEdge(
+    """The method to use when ordering `WorkoutSchedule`."""
+    orderBy: [WorkoutSchedulesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutSchedulesEdge
+}
+
+"""All input for the `updateWorkoutSchedule` mutation."""
+input UpdateWorkoutScheduleInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `WorkoutSchedule` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `WorkoutSchedule` being updated.
+  """
+  workoutSchedulePatch: WorkoutSchedulePatch!
+}
+
+"""
+Represents an update to a `WorkoutSchedule`. Fields that are set will be updated.
+"""
+input WorkoutSchedulePatch {
+  id: UUID
+  userId: UUID
+  name: String
+  isActive: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""All input for the `updateWorkoutScheduleById` mutation."""
+input UpdateWorkoutScheduleByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `WorkoutSchedule` being updated.
+  """
+  workoutSchedulePatch: WorkoutSchedulePatch!
+  id: UUID!
+}
+
+"""The output of our update `WorkoutTemplate` mutation."""
+type UpdateWorkoutTemplatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutTemplate` that was updated by this mutation."""
+  workoutTemplate: WorkoutTemplate
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `WorkoutTemplate`."""
+  userByUserId: User
+
+  """An edge for our `WorkoutTemplate`. May be used by Relay 1."""
+  workoutTemplateEdge(
+    """The method to use when ordering `WorkoutTemplate`."""
+    orderBy: [WorkoutTemplatesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutTemplatesEdge
+}
+
+"""All input for the `updateWorkoutTemplate` mutation."""
+input UpdateWorkoutTemplateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `WorkoutTemplate` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `WorkoutTemplate` being updated.
+  """
+  workoutTemplatePatch: WorkoutTemplatePatch!
+}
+
+"""
+Represents an update to a `WorkoutTemplate`. Fields that are set will be updated.
+"""
+input WorkoutTemplatePatch {
+  id: UUID
+  userId: UUID
+  name: String
+  description: String
+  isPublic: Boolean
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""All input for the `updateWorkoutTemplateById` mutation."""
+input UpdateWorkoutTemplateByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `WorkoutTemplate` being updated.
+  """
+  workoutTemplatePatch: WorkoutTemplatePatch!
+  id: UUID!
+}
+
+"""The output of our update `Workout` mutation."""
+type UpdateWorkoutPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Workout` that was updated by this mutation."""
+  workout: Workout
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Workout`."""
+  userByUserId: User
+
+  """An edge for our `Workout`. May be used by Relay 1."""
+  workoutEdge(
+    """The method to use when ordering `Workout`."""
+    orderBy: [WorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutsEdge
+}
+
+"""All input for the `updateWorkout` mutation."""
+input UpdateWorkoutInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Workout` to be updated.
+  """
+  nodeId: ID!
+
+  """
+  An object where the defined keys will be set on the `Workout` being updated.
+  """
+  workoutPatch: WorkoutPatch!
+}
+
+"""
+Represents an update to a `Workout`. Fields that are set will be updated.
+"""
+input WorkoutPatch {
+  id: UUID
+  userId: UUID
+  name: String
+  date: Date
+  notes: String
+  completed: Boolean
+  durationMinutes: Int
+  createdAt: Datetime
+  updatedAt: Datetime
+}
+
+"""All input for the `updateWorkoutById` mutation."""
+input UpdateWorkoutByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  An object where the defined keys will be set on the `Workout` being updated.
+  """
+  workoutPatch: WorkoutPatch!
+  id: UUID!
+}
+
+"""The output of our delete `Exercise` mutation."""
+type DeleteExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Exercise` that was deleted by this mutation."""
+  exercise: Exercise
+  deletedExerciseId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Exercise`."""
+  userByUserId: User
+
+  """An edge for our `Exercise`. May be used by Relay 1."""
+  exerciseEdge(
+    """The method to use when ordering `Exercise`."""
+    orderBy: [ExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ExercisesEdge
+}
+
+"""All input for the `deleteExercise` mutation."""
+input DeleteExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Exercise` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteExerciseById` mutation."""
+input DeleteExerciseByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Migration` mutation."""
+type DeleteMigrationPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Migration` that was deleted by this mutation."""
+  migration: Migration
+  deletedMigrationId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `Migration`. May be used by Relay 1."""
+  migrationEdge(
+    """The method to use when ordering `Migration`."""
+    orderBy: [MigrationsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): MigrationsEdge
+}
+
+"""All input for the `deleteMigration` mutation."""
+input DeleteMigrationInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Migration` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteMigrationById` mutation."""
+input DeleteMigrationByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: Int!
+}
+
+"""All input for the `deleteMigrationByName` mutation."""
+input DeleteMigrationByNameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  name: String!
+}
+
+"""The output of our delete `ScheduledWorkout` mutation."""
+type DeleteScheduledWorkoutPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `ScheduledWorkout` that was deleted by this mutation."""
+  scheduledWorkout: ScheduledWorkout
+  deletedScheduledWorkoutId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `WorkoutSchedule` that is related to this `ScheduledWorkout`.
+  """
+  workoutScheduleByScheduleId: WorkoutSchedule
+
+  """An edge for our `ScheduledWorkout`. May be used by Relay 1."""
+  scheduledWorkoutEdge(
+    """The method to use when ordering `ScheduledWorkout`."""
+    orderBy: [ScheduledWorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): ScheduledWorkoutsEdge
+}
+
+"""All input for the `deleteScheduledWorkout` mutation."""
+input DeleteScheduledWorkoutInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `ScheduledWorkout` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteScheduledWorkoutById` mutation."""
+input DeleteScheduledWorkoutByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""
+All input for the `deleteScheduledWorkoutByScheduleIdAndDayOfWeek` mutation.
+"""
+input DeleteScheduledWorkoutByScheduleIdAndDayOfWeekInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  scheduleId: UUID!
+  dayOfWeek: Int!
+}
+
+"""The output of our delete `Set` mutation."""
+type DeleteSetPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Set` that was deleted by this mutation."""
+  set: Set
+  deletedSetId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `WorkoutExercise` that is related to this `Set`."""
+  workoutExerciseByWorkoutExerciseId: WorkoutExercise
+
+  """An edge for our `Set`. May be used by Relay 1."""
+  setEdge(
+    """The method to use when ordering `Set`."""
+    orderBy: [SetsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): SetsEdge
+}
+
+"""All input for the `deleteSet` mutation."""
+input DeleteSetInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Set` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteSetById` mutation."""
+input DeleteSetByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `TemplateExercise` mutation."""
+type DeleteTemplateExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `TemplateExercise` that was deleted by this mutation."""
+  templateExercise: TemplateExercise
+  deletedTemplateExerciseId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """
+  Reads a single `WorkoutTemplate` that is related to this `TemplateExercise`.
+  """
+  workoutTemplateByTemplateId: WorkoutTemplate
+
+  """Reads a single `Exercise` that is related to this `TemplateExercise`."""
+  exerciseByExerciseId: Exercise
+
+  """An edge for our `TemplateExercise`. May be used by Relay 1."""
+  templateExerciseEdge(
+    """The method to use when ordering `TemplateExercise`."""
+    orderBy: [TemplateExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): TemplateExercisesEdge
+}
+
+"""All input for the `deleteTemplateExercise` mutation."""
+input DeleteTemplateExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `TemplateExercise` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteTemplateExerciseById` mutation."""
+input DeleteTemplateExerciseByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `UserCredential` mutation."""
+type DeleteUserCredentialPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `UserCredential` that was deleted by this mutation."""
+  userCredential: UserCredential
+  deletedUserCredentialId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `UserCredential`."""
+  userByUserId: User
+
+  """An edge for our `UserCredential`. May be used by Relay 1."""
+  userCredentialEdge(
+    """The method to use when ordering `UserCredential`."""
+    orderBy: [UserCredentialsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UserCredentialsEdge
+}
+
+"""All input for the `deleteUserCredential` mutation."""
+input DeleteUserCredentialInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `UserCredential` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteUserCredentialById` mutation."""
+input DeleteUserCredentialByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""All input for the `deleteUserCredentialByCredentialId` mutation."""
+input DeleteUserCredentialByCredentialIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  credentialId: String!
+}
+
+"""The output of our delete `User` mutation."""
+type DeleteUserPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `User` that was deleted by this mutation."""
+  user: User
+  deletedUserId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """An edge for our `User`. May be used by Relay 1."""
+  userEdge(
+    """The method to use when ordering `User`."""
+    orderBy: [UsersOrderBy!] = [PRIMARY_KEY_ASC]
+  ): UsersEdge
+}
+
+"""All input for the `deleteUser` mutation."""
+input DeleteUserInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `User` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteUserById` mutation."""
+input DeleteUserByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""All input for the `deleteUserByEmail` mutation."""
+input DeleteUserByEmailInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  email: String!
+}
+
+"""All input for the `deleteUserByUsername` mutation."""
+input DeleteUserByUsernameInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  username: String!
+}
+
+"""The output of our delete `WorkoutExercise` mutation."""
+type DeleteWorkoutExercisePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutExercise` that was deleted by this mutation."""
+  workoutExercise: WorkoutExercise
+  deletedWorkoutExerciseId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `Workout` that is related to this `WorkoutExercise`."""
+  workoutByWorkoutId: Workout
+
+  """Reads a single `Exercise` that is related to this `WorkoutExercise`."""
+  exerciseByExerciseId: Exercise
+
+  """An edge for our `WorkoutExercise`. May be used by Relay 1."""
+  workoutExerciseEdge(
+    """The method to use when ordering `WorkoutExercise`."""
+    orderBy: [WorkoutExercisesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutExercisesEdge
+}
+
+"""All input for the `deleteWorkoutExercise` mutation."""
+input DeleteWorkoutExerciseInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `WorkoutExercise` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteWorkoutExerciseById` mutation."""
+input DeleteWorkoutExerciseByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `WorkoutSchedule` mutation."""
+type DeleteWorkoutSchedulePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutSchedule` that was deleted by this mutation."""
+  workoutSchedule: WorkoutSchedule
+  deletedWorkoutScheduleId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `WorkoutSchedule`."""
+  userByUserId: User
+
+  """An edge for our `WorkoutSchedule`. May be used by Relay 1."""
+  workoutScheduleEdge(
+    """The method to use when ordering `WorkoutSchedule`."""
+    orderBy: [WorkoutSchedulesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutSchedulesEdge
+}
+
+"""All input for the `deleteWorkoutSchedule` mutation."""
+input DeleteWorkoutScheduleInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `WorkoutSchedule` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteWorkoutScheduleById` mutation."""
+input DeleteWorkoutScheduleByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `WorkoutTemplate` mutation."""
+type DeleteWorkoutTemplatePayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `WorkoutTemplate` that was deleted by this mutation."""
+  workoutTemplate: WorkoutTemplate
+  deletedWorkoutTemplateId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `WorkoutTemplate`."""
+  userByUserId: User
+
+  """An edge for our `WorkoutTemplate`. May be used by Relay 1."""
+  workoutTemplateEdge(
+    """The method to use when ordering `WorkoutTemplate`."""
+    orderBy: [WorkoutTemplatesOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutTemplatesEdge
+}
+
+"""All input for the `deleteWorkoutTemplate` mutation."""
+input DeleteWorkoutTemplateInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `WorkoutTemplate` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteWorkoutTemplateById` mutation."""
+input DeleteWorkoutTemplateByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+"""The output of our delete `Workout` mutation."""
+type DeleteWorkoutPayload {
+  """
+  The exact same `clientMutationId` that was provided in the mutation input,
+  unchanged and unused. May be used by a client to track mutations.
+  """
+  clientMutationId: String
+
+  """The `Workout` that was deleted by this mutation."""
+  workout: Workout
+  deletedWorkoutId: ID
+
+  """
+  Our root query field type. Allows us to run any query from our mutation payload.
+  """
+  query: Query
+
+  """Reads a single `User` that is related to this `Workout`."""
+  userByUserId: User
+
+  """An edge for our `Workout`. May be used by Relay 1."""
+  workoutEdge(
+    """The method to use when ordering `Workout`."""
+    orderBy: [WorkoutsOrderBy!] = [PRIMARY_KEY_ASC]
+  ): WorkoutsEdge
+}
+
+"""All input for the `deleteWorkout` mutation."""
+input DeleteWorkoutInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+
+  """
+  The globally unique `ID` which will identify a single `Workout` to be deleted.
+  """
+  nodeId: ID!
+}
+
+"""All input for the `deleteWorkoutById` mutation."""
+input DeleteWorkoutByIdInput {
+  """
+  An arbitrary string value with no semantic meaning. Will be included in the
+  payload verbatim. May be used to track mutations by the client.
+  """
+  clientMutationId: String
+  id: UUID!
+}
+
+type RegistrationOptions {
+  challenge: String!
+  rp: RegistrationOptionsRP!
+  user: RegistrationOptionsUser!
+  pubKeyCredParams: [PubKeyCredParam!]!
+  timeout: Int
+  attestation: String
+  authenticatorSelection: AuthenticatorSelection
+}
+
+type RegistrationOptionsRP {
+  name: String!
+  id: String!
+}
+
+type RegistrationOptionsUser {
+  id: String!
+  name: String!
+  displayName: String!
+}
+
+type PubKeyCredParam {
+  alg: Int!
+  type: String!
+}
+
+type AuthenticatorSelection {
+  authenticatorAttachment: String
+  residentKey: String
+  userVerification: String
+}
+
+type AuthenticationOptions {
+  challenge: String!
+  timeout: Int
+  rpId: String!
+  userVerification: String
+  allowCredentials: [AllowCredential!]
+}
+
+type AllowCredential {
+  id: String!
+  type: String!
+  transports: [String!]
+}
+
+type AuthResult {
+  token: String!
+  user: User!
+}
+
+input RegistrationResponseInput {
+  id: String!
+  rawId: String!
+  response: AuthenticatorAttestationResponseInput!
+  type: String!
+  authenticatorAttachment: String
+}
+
+input AuthenticatorAttestationResponseInput {
+  clientDataJSON: String!
+  attestationObject: String!
+  transports: [String!]
+  publicKeyAlgorithm: Int
+  publicKey: String
+  authenticatorData: String
+}
+
+input AuthenticationResponseInput {
+  id: String!
+  rawId: String!
+  response: AuthenticatorAssertionResponseInput!
+  type: String!
+  authenticatorAttachment: String
+}
+
+input AuthenticatorAssertionResponseInput {
+  clientDataJSON: String!
+  authenticatorData: String!
+  signature: String!
+  userHandle: String
+}
