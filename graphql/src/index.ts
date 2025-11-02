@@ -4,6 +4,8 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import { AuthPlugin } from './auth-plugin.js';
+import PgSimplifyInflectorPlugin from '@graphile-contrib/pg-simplify-inflector';
+import { WorkoutPlugin } from './workout-plugin.js';
 
 dotenv.config();
 
@@ -31,7 +33,7 @@ app.use(
     ignoreIndexes: false,
     showErrorStack: process.env.NODE_ENV === 'development',
     extendedErrors: ['hint', 'detail', 'errcode'],
-    appendPlugins: [AuthPlugin],
+    appendPlugins: [PgSimplifyInflectorPlugin, AuthPlugin, WorkoutPlugin],
     enableQueryBatching: true,
     exportGqlSchemaPath:
       process.env.NODE_ENV === 'development'

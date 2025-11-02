@@ -8,8 +8,9 @@ import WorkoutsPage from './pages/WorkoutsPage';
 import WorkoutLogPage from './pages/WorkoutLogPage';
 import TemplatesPage from './pages/TemplatesPage';
 import TemplateFormPage from './pages/TemplateFormPage';
-import SchedulesPage from './pages/SchedulesPage';
-import ScheduleFormPage from './pages/ScheduleFormPage';
+import SplitsPage from './pages/SplitsPage';
+import SplitFormPage from './pages/SplitFormPage';
+import DevPage from './pages/DevPage';
 import Layout from './components/Layout';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -30,13 +31,14 @@ function App() {
         }
       >
         <Route index element={<DashboardPage />} />
-        <Route path="schedules" element={<SchedulesPage />} />
-        <Route path="schedules/:id" element={<ScheduleFormPage />} />
+        <Route path="splits" element={<SplitsPage />} />
+        <Route path="splits/:id" element={<SplitFormPage />} />
         <Route path="templates" element={<TemplatesPage />} />
         <Route path="templates/:id" element={<TemplateFormPage />} />
         <Route path="exercises" element={<ExercisesPage />} />
         <Route path="workouts" element={<WorkoutsPage />} />
         <Route path="workouts/:id" element={<WorkoutLogPage />} />
+        <Route path="dev" element={<DevPage />} />
       </Route>
     </Routes>
   );

@@ -1,32 +1,73 @@
+@import './theme.css';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-gray-50 text-gray-900;
+    background-color: var(--color-secondary-50);
+    color: var(--color-secondary-900);
+    /* Support iPhone safe areas (notch, home indicator) */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  }
+
+  /* Improve touch targets for mobile */
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 }
 
 @layer components {
   .btn {
     @apply px-4 py-2 rounded-lg font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2;
+    /* Ensure minimum touch target size (44x44px for iOS) */
+    min-height: 44px;
   }
   
   .btn-primary {
-    @apply btn bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+    @apply btn text-white;
+    background-color: var(--color-primary-600);
+  }
+  .btn-primary:hover {
+    background-color: var(--color-primary-700);
+  }
+  .btn-primary:active {
+    background-color: var(--color-primary-800);
+  }
+  .btn-primary:focus {
+    --tw-ring-color: var(--color-primary-500);
   }
   
   .btn-secondary {
-    @apply btn bg-gray-200 text-gray-900 hover:bg-gray-300 focus:ring-gray-500;
+    @apply btn;
+    color: var(--color-secondary-900);
+    background-color: var(--color-secondary-200);
+  }
+  .btn-secondary:hover {
+    background-color: var(--color-secondary-300);
+  }
+  .btn-secondary:active {
+    background-color: var(--color-secondary-400);
+  }
+  .btn-secondary:focus {
+    --tw-ring-color: var(--color-secondary-500);
   }
   
   .input {
-    @apply w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    @apply w-full px-3 py-2 rounded-lg focus:outline-none focus:ring-2 focus:border-transparent;
+    border-color: var(--color-border);
+    /* Ensure comfortable touch target for inputs */
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+  .input:focus {
+    --tw-ring-color: var(--color-primary-500);
   }
   
   .card {
-    @apply bg-white rounded-lg shadow-md p-6;
+    @apply bg-white rounded-lg shadow-md p-4 sm:p-6;
   }
 }
 

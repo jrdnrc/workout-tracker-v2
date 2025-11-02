@@ -16,6 +16,13 @@
     "db:seed": "cd graphql && npm run seed",
     "db:seed:templates": "cd graphql && npm run seed:templates"
   },
-  "devDependencies": {}
+  "overrides": {
+    "graphql": "15.10.1",
+    "**": {
+      "graphql": "15.10.1"
+    }
+  },
+  "dependencies": {
+    "graphql": "15.10.1"
+  }
 }
-

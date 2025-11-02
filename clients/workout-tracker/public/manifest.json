@@ -1,0 +1,19 @@
+{
+  "name": "Workout Tracker",
+  "short_name": "Workout",
+  "description": "Track your fitness journey with ease",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2563eb",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/dumbbell.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

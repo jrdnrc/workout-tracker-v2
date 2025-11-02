@@ -1,21 +1,28 @@
 import { useState, useEffect } from 'react';
 import { gql } from '@apollo/client';
 import { useParams, useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 import { getCurrentUser } from '../lib/auth';
+import { handleError } from '../lib/errors';
+import { ROUTES, DAYS_OF_WEEK } from '../constants';
+import { ERROR_MESSAGES } from '../constants';
 import {
-  useGetScheduleQuery,
-  useAllTemplatesForScheduleQuery,
-  useCreateScheduleMutation,
-  useCreateScheduledWorkoutMutation,
+  useGetSplitQuery,
+  useTemplatesForSplitQuery,
+  useCreateSplitMutation,
+  useCreateSplitWorkoutMutation,
 } from '../generated/graphql';
+import LoadingState from '../components/LoadingState';
+import FormField from '../components/FormField';
+import BackButton from '../components/BackButton';
 
 gql`
-  query GetSchedule($id: UUID!) {
-    workoutScheduleById(id: $id) {
+  query GetSplit($id: UUID!) {
+    workoutSplit(id: $id) {
       id
       name
       isActive
-      scheduledWorkoutsByScheduleId {
+      splitWorkoutsBySplitId {
         nodes {
           id
           dayOfWeek
@@ -27,8 +34,8 @@ gql`
 `;
 
 gql`
-  query AllTemplatesForSchedule {
-    allWorkoutTemplates(orderBy: NATURAL) {
+  query TemplatesForSplit {
+    workoutTemplates(orderBy: NATURAL) {
       nodes {
         id
         name
@@ -39,9 +46,9 @@ gql`
 `;
 
 gql`
-  mutation CreateSchedule($input: CreateWorkoutScheduleInput!) {
-    createWorkoutSchedule(input: $input) {
-      workoutSchedule {
+  mutation CreateSplit($input: CreateWorkoutSplitInput!) {
+    createWorkoutSplit(input: $input) {
+      workoutSplit {
         id
       }
     }
@@ -49,9 +56,9 @@ gql`
 `;
 
 gql`
-  mutation CreateScheduledWorkout($input: CreateScheduledWorkoutInput!) {
-    createScheduledWorkout(input: $input) {
-      scheduledWorkout {
+  mutation CreateSplitWorkout($input: CreateSplitWorkoutInput!) {
+    createSplitWorkout(input: $input) {
+      splitWorkout {
         id
       }
     }
@@ -59,26 +66,16 @@ gql`
 `;
 
 gql`
-  mutation DeleteScheduledWorkout($input: DeleteScheduledWorkoutByIdInput!) {
-    deleteScheduledWorkoutById(input: $input) {
-      scheduledWorkout {
+  mutation DeleteSplitWorkout($input: DeleteSplitWorkoutInput!) {
+    deleteSplitWorkout(input: $input) {
+      splitWorkout {
         id
       }
     }
   }
 `;
 
-const DAYS_OF_WEEK = [
-  { value: 0, label: 'Sunday', short: 'Sun' },
-  { value: 1, label: 'Monday', short: 'Mon' },
-  { value: 2, label: 'Tuesday', short: 'Tue' },
-  { value: 3, label: 'Wednesday', short: 'Wed' },
-  { value: 4, label: 'Thursday', short: 'Thu' },
-  { value: 5, label: 'Friday', short: 'Fri' },
-  { value: 6, label: 'Saturday', short: 'Sat' },
-];
-
-export default function ScheduleFormPage() {
+export default function SplitFormPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
   const user = getCurrentUser();
@@ -88,30 +85,30 @@ export default function ScheduleFormPage() {
   const [setAsActive, setSetAsActive] = useState(true);
   const [dayTemplates, setDayTemplates] = useState<Record<number, string>>({});
 
-  const { data: scheduleData, loading: scheduleLoading } = useGetScheduleQuery({
+  const { data: splitData, loading: splitLoading } = useGetSplitQuery({
     variables: { id: id! },
     skip: isNew,
   });
 
-  const { data: templatesData } = useAllTemplatesForScheduleQuery();
-  const [createSchedule, { loading: creating }] = useCreateScheduleMutation();
-  const [createScheduledWorkout] = useCreateScheduledWorkoutMutation();
+  const { data: templatesData } = useTemplatesForSplitQuery();
+  const [createSplit, { loading: creating }] = useCreateSplitMutation();
+  const [createSplitWorkout] = useCreateSplitWorkoutMutation();
 
   useEffect(() => {
-    if (scheduleData?.workoutScheduleById) {
-      const schedule = scheduleData.workoutScheduleById;
-      setName(schedule.name);
-      setSetAsActive(schedule.isActive);
+    if (splitData?.workoutSplit) {
+      const split = splitData.workoutSplit;
+      setName(split.name);
+      setSetAsActive(split.isActive);
       
       const templates: Record<number, string> = {};
-      if (schedule.scheduledWorkoutsByScheduleId?.nodes) {
-        schedule.scheduledWorkoutsByScheduleId.nodes.forEach((sw: any) => {
+      if (split.splitWorkoutsBySplitId?.nodes) {
+        split.splitWorkoutsBySplitId.nodes.forEach((sw) => {
           templates[sw.dayOfWeek] = sw.templateId;
         });
       }
       setDayTemplates(templates);
     }
-  }, [scheduleData]);
+  }, [splitData]);
 
   const handleDayTemplateChange = (day: number, templateId: string) => {
     setDayTemplates((prev) => {
@@ -124,7 +121,7 @@ export default function ScheduleFormPage() {
   };
 
   const getTemplateName = (templateId: string) => {
-    const template = templatesData?.allWorkoutTemplates?.nodes?.find((t: any) => t.id === templateId);
+    const template = templatesData?.workoutTemplates?.nodes?.find((t) => t.id === templateId);
     return template?.name || 'Unknown';
   };
 
@@ -132,16 +129,16 @@ export default function ScheduleFormPage() {
     e.preventDefault();
 
     if (!name.trim()) {
-      alert('Please enter a schedule name');
+      toast.error('Please enter a split name');
       return;
     }
 
     try {
-      // Create schedule
-      const result = await createSchedule({
+      // Create split
+      const result = await createSplit({
         variables: {
           input: {
-            workoutSchedule: {
+            workoutSplit: {
               userId: user?.id,
               name: name.trim(),
               isActive: setAsActive,
@@ -150,18 +147,18 @@ export default function ScheduleFormPage() {
         },
       });
 
-      const scheduleId = result.data?.createWorkoutSchedule?.workoutSchedule?.id;
-      if (!scheduleId) {
-        throw new Error('Failed to get schedule ID');
+      const splitId = result.data?.createWorkoutSplit?.workoutSplit?.id;
+      if (!splitId) {
+        throw new Error('Failed to get split ID');
       }
 
-      // Add scheduled workouts for each day
+      // Add split workouts for each day
       for (const [dayOfWeek, templateId] of Object.entries(dayTemplates)) {
-        await createScheduledWorkout({
+        await createSplitWorkout({
           variables: {
             input: {
-              scheduledWorkout: {
-                scheduleId,
+              splitWorkout: {
+                splitId: splitId,
                 templateId,
                 dayOfWeek: parseInt(dayOfWeek),
               },
@@ -170,37 +167,29 @@ export default function ScheduleFormPage() {
         });
       }
 
-      navigate('/schedules');
+      toast.success('Split created successfully');
+      navigate(ROUTES.SPLITS);
     } catch (error) {
-      console.error('Error creating schedule:', error);
-      alert('Failed to create schedule');
+      handleError(error, ERROR_MESSAGES.CREATE_FAILED);
     }
   };
 
-  if (scheduleLoading) return <div>Loading...</div>;
+  if (splitLoading) return <LoadingState />;
 
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
-        <button
-          onClick={() => navigate('/schedules')}
-          className="text-gray-600 hover:text-gray-900"
-        >
-          ← Back
-        </button>
-        <h1 className="text-3xl font-bold text-gray-900">
-          {isNew ? 'Create Schedule' : 'Edit Schedule'}
+        <BackButton to={ROUTES.SPLITS} />
+        <h1 className="text-3xl font-bold text-secondary-900">
+          {isNew ? 'Create Split' : 'Edit Split'}
         </h1>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="card">
-          <h2 className="text-xl font-bold mb-4">Schedule Details</h2>
+          <h2 className="text-xl font-bold mb-4">Split Details</h2>
           <div className="space-y-4">
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1">
-                Schedule Name *
-              </label>
+            <FormField label="Split Name" required>
               <input
                 type="text"
                 required
@@ -209,25 +198,25 @@ export default function ScheduleFormPage() {
                 className="input"
                 placeholder="e.g., Push/Pull/Legs, Upper/Lower"
               />
-            </div>
+            </FormField>
             <div className="flex items-center gap-2">
               <input
                 type="checkbox"
                 id="setAsActive"
                 checked={setAsActive}
                 onChange={(e) => setSetAsActive(e.target.checked)}
-                className="w-4 h-4 rounded text-blue-600"
+                className="w-4 h-4 rounded text-primary-600"
               />
-              <label htmlFor="setAsActive" className="text-sm font-medium text-gray-700">
-                Set as active schedule
+              <label htmlFor="setAsActive" className="text-sm font-medium text-secondary-700">
+                Set as active split
               </label>
             </div>
           </div>
         </div>
 
         <div className="card">
-          <h2 className="text-xl font-bold mb-4">Weekly Schedule</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-xl font-bold mb-4">Weekly Split</h2>
+          <p className="text-secondary-600 mb-6">
             Assign workout templates to each day of the week. Leave empty for rest days.
           </p>
 
@@ -235,16 +224,16 @@ export default function ScheduleFormPage() {
             {DAYS_OF_WEEK.map((day) => (
               <div
                 key={day.value}
-                className="flex items-center gap-4 p-3 bg-gray-50 rounded-lg"
+                className="flex items-center gap-4 p-3 bg-secondary-50 rounded-lg"
               >
-                <div className="w-24 font-medium text-gray-900">{day.label}</div>
+                <div className="w-24 font-medium text-secondary-900">{day.label}</div>
                 <select
                   value={dayTemplates[day.value] || ''}
                   onChange={(e) => handleDayTemplateChange(day.value, e.target.value)}
                   className="input flex-1"
                 >
                   <option value="">Rest Day</option>
-                  {templatesData?.allWorkoutTemplates?.nodes?.map((template: any) => (
+                  {templatesData?.workoutTemplates?.nodes?.map((template) => (
                     <option key={template.id} value={template.id}>
                       {template.name}
                     </option>
@@ -262,11 +251,11 @@ export default function ScheduleFormPage() {
 
         <div className="flex gap-3">
           <button type="submit" disabled={creating} className="btn-primary flex-1">
-            {creating ? 'Saving...' : 'Save Schedule'}
+            {creating ? 'Saving...' : 'Save Split'}
           </button>
           <button
             type="button"
-            onClick={() => navigate('/schedules')}
+            onClick={() => navigate(ROUTES.SPLITS)}
             className="btn-secondary"
           >
             Cancel

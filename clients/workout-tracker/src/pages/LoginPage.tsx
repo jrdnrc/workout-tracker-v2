@@ -24,8 +24,9 @@ export default function LoginPage() {
       const result = await authenticateWithWebAuthn(email);
       setAuthToken(result.token);
       navigate('/');
-    } catch (err: any) {
-      setError(err.message || 'Authentication failed. Please try again.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Authentication failed. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }
@@ -45,21 +46,22 @@ export default function LoginPage() {
       const result = await authenticateWithWebAuthn();
       setAuthToken(result.token);
       navigate('/');
-    } catch (err: any) {
-      setError(err.message || 'Authentication failed. Please try again.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Authentication failed. Please try again.';
+      setError(message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100">
-      <div className="max-w-md w-full space-y-8 bg-white p-8 rounded-xl shadow-lg">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-primary-50 to-primary-100 px-4 sm:px-6">
+      <div className="max-w-md w-full space-y-6 sm:space-y-8 bg-white p-6 sm:p-8 rounded-xl shadow-lg">
         <div>
-          <h2 className="text-center text-3xl font-extrabold text-gray-900">
+          <h2 className="text-center text-2xl sm:text-3xl font-extrabold text-secondary-900">
             💪 Workout Tracker
           </h2>
-          <p className="mt-2 text-center text-sm text-gray-600">
+          <p className="mt-2 text-center text-sm text-secondary-600">
             Login with biometric authentication
           </p>
         </div>
@@ -75,16 +77,16 @@ export default function LoginPage() {
 
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-gray-300" />
+              <div className="w-full border-t border-secondary-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Or login with email</span>
+              <span className="px-2 bg-white text-secondary-500">Or login with email</span>
             </div>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-secondary-700">
                 Email
               </label>
               <input
@@ -110,19 +112,19 @@ export default function LoginPage() {
         </div>
 
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm">
+          <div className="bg-danger-50 border border-danger-200 text-danger-700 px-4 py-3 rounded-lg text-sm">
             {error}
           </div>
         )}
 
         <div className="text-center text-sm">
-          <span className="text-gray-600">Don't have an account? </span>
-          <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
+          <span className="text-secondary-600">Don't have an account? </span>
+          <Link to="/register" className="text-primary-600 hover:text-primary-700 font-medium">
             Register
           </Link>
         </div>
 
-        <div className="mt-6 text-xs text-gray-500 text-center">
+        <div className="mt-6 text-xs text-secondary-500 text-center">
           <p>
             WebAuthn uses your device's biometric authentication (Face ID, Touch ID, Windows Hello, etc.)
             to securely log you in without passwords.
