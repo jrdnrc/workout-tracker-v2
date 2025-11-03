@@ -11,5 +11,5 @@ FROM base AS graphql
 CMD ["node", "dist/index.js"]
 COPY --from=node-builder /app/dist dist
 
-FROM nginx AS app
+FROM nginx:alpine AS app
 COPY --from=node-builder /app/dist /usr/share/nginx/html
