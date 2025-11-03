@@ -1,4 +1,3 @@
-import React from 'react';
 import DevActionCard from './DevActionCard';
 import { handleSuccess, handleError } from '../lib/errors';
 
