@@ -46,6 +46,12 @@ resource "github_actions_secret" "ssh_private_key" {
   plaintext_value  = var.ssh_private_key
 }
 
+resource "github_actions_secret" "ghcr_token" {
+  repository       = github_repository.workout_tracker.name
+  secret_name      = "GHCR_TOKEN"
+  plaintext_value  = var.gh_token
+}
+
 resource "github_repository_file" "gitignore" {
   repository          = github_repository.workout_tracker.name
   branch              = github_branch.main.branch
