@@ -31,9 +31,6 @@ lerna-debug.log*
 # Database
 postgres-data/
 
-# Generated
-**/generated/
-
 **/*.tfstate*
 *.tfvars
 !terraform.tfvars
