@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   postgres:
     image: postgres:15-alpine
@@ -17,6 +15,26 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+
+  postgraphile:
+    image: node:24-alpine
+    environment:
+      - DATABASE_URL=postgres://wotrack:wotrack@postgres:5432/wotrack
+      - JWT_SECRET=your-secret-key-change-in-production
+      - PORT=5010
+      - NODE_ENV=development
+      - RP_NAME=Workout Tracker
+      - RP_ID=localhost
+      - ORIGIN=http://localhost:5173
+    ports:
+      - "5010:5010"
+    volumes:
+      - "./graphql:/app"
+      - '/app/node_modules'
+    working_dir: "/app"
+    command: /bin/sh -c 'npm i && npm run dev'
+    depends_on:
+      - postgres
 
 volumes:
   postgres-data:

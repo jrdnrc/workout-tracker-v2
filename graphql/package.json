@@ -8,8 +8,7 @@
     "build": "tsc",
     "migrate": "tsx src/migrate.ts",
     "seed": "tsx src/seed-exercises.ts",
-    "seed:templates": "tsx src/seed-templates.ts",
-    "postinstall": "rm -rf node_modules/postgraphile/node_modules/graphql 2>/dev/null; ln -s ../../../graphql node_modules/postgraphile/node_modules/graphql 2>/dev/null || rm -rf ../node_modules/postgraphile/node_modules/graphql 2>/dev/null; ln -s ../../graphql ../node_modules/postgraphile/node_modules/graphql 2>/dev/null || true"
+    "seed:templates": "tsx src/seed-templates.ts"
   },
   "dependencies": {
     "@graphile-contrib/pg-simplify-inflector": "^6.1.0",

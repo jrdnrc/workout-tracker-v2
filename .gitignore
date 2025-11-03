@@ -34,4 +34,7 @@ postgres-data/
 # Generated
 **/generated/
 
-**/*.tfstate
+**/*.tfstate*
+*.tfvars
+!terraform.tfvars
+.terraform
