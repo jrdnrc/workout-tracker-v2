@@ -43,7 +43,7 @@ resource "github_actions_secret" "ssh_user" {
 resource "github_actions_secret" "ssh_private_key" {
   repository       = github_repository.workout_tracker.name
   secret_name      = "SSH_PRIVATE_KEY"
-  plaintext_value  = var.ssh_private_key
+  plaintext_value  = file(var.ssh_private_key)
 }
 
 resource "github_actions_secret" "ghcr_token" {
