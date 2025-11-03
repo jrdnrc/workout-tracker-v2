@@ -37,3 +37,15 @@ jobs:
           target: ${{ matrix.service }}
           push: true
           platforms: linux/amd64
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build-docker
+    steps:
+      - uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+      - name: Deploy to DigitalOcean
+        run: |
+          ssh -o StrictHostKeyChecking=no root@${{ secrets.DEPLOY_HOST }} \
+          "cd /srv/myapp && docker compose pull && docker compose up -d --remove-orphans"
