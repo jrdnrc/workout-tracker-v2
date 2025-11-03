@@ -137,9 +137,7 @@ export async function authenticateWithWebAuthn(email?: string) {
 
 export function isWebAuthnSupported(): boolean {
   return !!(
-    window?.PublicKeyCredential &&
-    navigator?.credentials?.create &&
-    navigator?.credentials?.get
+    window?.PublicKeyCredential
   );
 }
 

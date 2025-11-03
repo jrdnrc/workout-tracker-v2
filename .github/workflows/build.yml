@@ -34,5 +34,6 @@ jobs:
           context: ${{ matrix.path }}
           file: Dockerfile
           tags: ghcr.io/jrdnrc/workout-tracker-${{ matrix.service }}:latest
+          target: ${{ matrix.service }}
           push: true
           platforms: linux/amd64
