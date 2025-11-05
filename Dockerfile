@@ -8,6 +8,7 @@ COPY . .
 RUN npm run build
 
 FROM node-builder AS graphql
+COPY src/migrations dist/migrations
 CMD ["node", "dist/index.js"]
 
 FROM nginx:alpine AS app
