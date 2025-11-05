@@ -32,6 +32,8 @@ module "digital_ocean" {
   do_token    = var.do_token
   ssh_pub_key = var.ssh_pub_key
   gh_token    = var.gh_token
+
+  droplet_size = var.droplet_size
 }
 
 module "cloudflare_dns_entry" {

@@ -25,8 +25,8 @@ const DATABASE_URL =
 app.use(
   postgraphile(DATABASE_URL, 'public', {
     watchPg: process.env.NODE_ENV === 'development',
-    graphiql: process.env.NODE_ENV === 'development',
-    enhanceGraphiql: true,
+    graphiql: true,
+    enhanceGraphiql: process.env.NODE_ENV === 'development',
     dynamicJson: true,
     setofFunctionsContainNulls: false,
     ignoreRBAC: false,
@@ -68,8 +68,6 @@ const PORT = process.env.PORT || 5010;
 
 app.listen(PORT, () => {
   console.log(`🚀 GraphQL server running on http://localhost:${PORT}/graphql`);
-  if (process.env.NODE_ENV === 'development') {
-    console.log(`📊 GraphiQL available at http://localhost:${PORT}/graphiql`);
-  }
+  console.log(`📊 GraphiQL available at http://localhost:${PORT}/graphiql`);
 });
 

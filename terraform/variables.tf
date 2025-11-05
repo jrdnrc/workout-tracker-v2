@@ -25,7 +25,7 @@ variable "ssh_pub_key" {
 variable "droplet_size" {
   description = "VPS Size"
   type        = string
-  default     = "s-1vcpu-512mb-10gb"
+  default     = "s-1vcpu-1gb"
 }
 
 variable "droplet_image" {
