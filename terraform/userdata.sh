@@ -33,19 +33,19 @@ sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication no/' /etc/ssh/sshd
 systemctl restart ssh
 
 # Create app directory
-mkdir -p /srv/myapp
-chown -R root:root /srv/myapp
+mkdir -p /srv
+chown -R root:root /srv
 
 # Create deploy script
-cat <<'EOF' > /srv/myapp/deploy.sh
+cat <<'EOF' > /srv/deploy.sh
 #!/bin/bash
 set -e
-cd /srv/myapp
+cd /srv
 docker compose pull
 docker compose up -d --remove-orphans
 EOF
 
-chmod +x /srv/myapp/deploy.sh
+chmod +x /srv/deploy.sh
 
 # Enable Docker on boot
 systemctl enable docker

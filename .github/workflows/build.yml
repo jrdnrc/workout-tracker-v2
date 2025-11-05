@@ -48,4 +48,4 @@ jobs:
       - name: Deploy to DigitalOcean
         run: |
           ssh -o StrictHostKeyChecking=no root@${{ secrets.DEPLOY_HOST }} \
-          "cd /srv/myapp && docker compose pull && docker compose up -d --remove-orphans"
+          "cd /srv && ./deploy.sh"
