@@ -55,3 +55,13 @@ variable "ssh_private_key" {
   type        = string
   sensitive   = true
 }
+
+variable "build_compute" {
+  description = "Whether to build the resources that cost money"
+  type        = bool
+  default     = false
+}
+
+locals {
+  droplet_ip = var.build_compute ? module.digital_ocean[0].droplet_ip : null
+}

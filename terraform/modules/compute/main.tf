@@ -7,10 +7,6 @@ terraform {
   }
 }
 
-provider "digitalocean" {
-  token = var.do_token
-}
-
 resource "digitalocean_ssh_key" "github_actions" {
   name       = "github-actions"
   public_key = file(var.ssh_pub_key)

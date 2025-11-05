@@ -21,7 +21,12 @@ provider "digitalocean" {
   token = var.do_token
 }
 
+provider "cloudflare" {
+  api_token = var.cf_token
+}
+
 module "digital_ocean" {
+  count  = var.build_compute ? 1 : 0
   source = "./modules/compute"
 
   do_token    = var.do_token
@@ -30,9 +35,10 @@ module "digital_ocean" {
 }
 
 module "cloudflare_dns_entry" {
+  count    = var.build_compute ? 1 : 0
   source   = "./modules/dns"
   zone_id  = var.cf_zone_id
-  content  = module.digital_ocean.droplet_ip
+  content  = local.droplet_ip
   cf_token = var.cf_token
 
   names = [
@@ -46,5 +52,6 @@ module "github_repository" {
   gh_token        = var.gh_token
   ssh_user        = var.ssh_user
   ssh_private_key = var.ssh_private_key
-  deploy_host     = module.digital_ocean.droplet_ip
+  deploy_host     = local.droplet_ip
+  add_deploy_host = var.build_compute
 }

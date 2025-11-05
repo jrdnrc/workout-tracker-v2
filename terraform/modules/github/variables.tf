@@ -19,4 +19,10 @@ variable "ssh_user" {
 variable "deploy_host" {
   description = "Host IP Address to deploy to"
   type        = string
+  default     = ""
+}
+
+variable "add_deploy_host" {
+  type    = bool
+  default = false
 }
