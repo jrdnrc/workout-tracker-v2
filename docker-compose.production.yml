@@ -1,0 +1,44 @@
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: wotrack-postgres
+    environment:
+      POSTGRES_USER: wotrack
+      POSTGRES_PASSWORD: wotrack
+      POSTGRES_DB: wotrack
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U wotrack"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgraphile:
+    image: ghcr.io/jrdnrc/workout-tracker-graphql:latest
+    environment:
+      - DATABASE_URL=postgres://wotrack:wotrack@postgres:5432/wotrack
+      - JWT_SECRET=your-secret-key-change-in-production
+      - PORT=5010
+      - NODE_ENV=development
+      - RP_NAME=Workout Tracker
+      - RP_ID=localhost
+      - ORIGIN=http://localhost:5173
+    ports:
+      - "5010:5010"
+    depends_on:
+      - postgres
+  
+  app:
+    image: ghcr.io/jrdnrc/workout-tracker-app:latest
+    depends_on:
+      - postgraphile
+    ports:
+      - "80:80"
+      - "443:443"
+
+volumes:
+  postgres-data:
+

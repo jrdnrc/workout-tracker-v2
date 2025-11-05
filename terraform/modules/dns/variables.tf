@@ -21,3 +21,7 @@ variable "ttl" {
   type    = number
   default = 1
 }
+variable "cf_token" {
+  type      = string
+  sensitive = true
+}

@@ -8,6 +8,7 @@ resource "github_repository" "workout_tracker" {
   description = "Workout Tracker"
   visibility  = "public"
 
+  # required to allow for a file to be committed
   auto_init = true
 
   allow_auto_merge = true
@@ -16,22 +17,34 @@ resource "github_repository" "workout_tracker" {
   allow_merge_commit = false
   allow_rebase_merge = false
   allow_squash_merge = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_branch" "main" {
   repository = github_repository.workout_tracker.name
   branch     = "main"
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_branch_default" "default"{
   repository = github_repository.workout_tracker.name
   branch     = github_branch.main.branch
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }
 
 resource "github_actions_secret" "deploy_host" {
   repository       = github_repository.workout_tracker.name
   secret_name      = "DEPLOY_HOST"
-  plaintext_value  = digitalocean_droplet.app.ipv4_address
+  plaintext_value  = var.deploy_host
 }
 
 resource "github_actions_secret" "ssh_user" {
@@ -61,4 +74,8 @@ resource "github_repository_file" "gitignore" {
   commit_author       = "Jordan Crocker"
   commit_email        = "jordan@jcrocker.uk"
   overwrite_on_create = true
+
+  lifecycle {
+    prevent_destroy = true
+  }
 }

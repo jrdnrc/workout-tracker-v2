@@ -7,6 +7,11 @@ terraform {
   }
 }
 
+provider "cloudflare" {
+  # The preferred authorization scheme for interacting with the Cloudflare API. [Create a token](https://developers.cloudflare.com/fundamentals/api/get-started/create-token/).
+  api_token = var.cf_token
+}
+
 resource "cloudflare_dns_record" "records" {
   for_each = toset(var.names)
 

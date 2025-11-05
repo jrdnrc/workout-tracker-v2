@@ -1,3 +1,3 @@
 output "droplet_ip" {
-  value = digitalocean_droplet.app.ipv4_address
+  value = module.digital_ocean.droplet_ip
 }

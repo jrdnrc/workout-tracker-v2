@@ -1,3 +1,12 @@
+terraform {
+  required_providers {
+    digitalocean = {
+      source  = "digitalocean/digitalocean"
+      version = "~> 2.0"
+    }
+  }
+}
+
 provider "digitalocean" {
   token = var.do_token
 }
@@ -23,10 +32,22 @@ resource "digitalocean_droplet" "app" {
   connection {
     type        = "ssh"
     user        = "root"
-    private_key = file("~/.ssh/id_rsa")
+    private_key = file("~/workout_tracker_rsa")
     host        = self.ipv4_address
     port        = 22
     timeout     = "2m"
+  }
+
+  provisioner "file" {
+    source      = "./../docker-compose.production.yml"
+    destination = "/srv/docker-compose.yml"
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "mkdir -p /root/.docker",
+      "echo '{\"auths\":{\"ghcr.io\":{\"auth\":\"'$(echo -n \"USERNAME:${var.gh_token}\" | base64)'\"}}}' > /root/.docker/config.json"
+      ]
   }
 
   tags = ["workout-tracker", "production"]
